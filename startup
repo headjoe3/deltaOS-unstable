@@ -1,8 +1,7 @@
 --ik this isn't needed, but I hate putting the desktop env in startup.
 
 
-os.loadAPI("/delta/apis/kernel")
-os.loadAPI("/delta/apis/tabmulti")
-os.loadAPI("/delta/apis/dialog")
-
-shell.run("/delta/system/desktop.lua")
+os.loadAPI("/apis/kernel")
+os.loadAPI("/apis/tabmulti")
+os.loadAPI("/apis/dialog")
+shell.run("/system/tabserv")

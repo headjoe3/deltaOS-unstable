@@ -1,48 +1,44 @@
 --[[
-
-Give all multitasking thanks to AssossaGPG, who coded the Multitasking API.
+Give all multitasking thanks to AssossaGPG, who coded the Tabbed Multitasking API.
 Thank you, AssossaGPG :D
-
 ]]--
 
 os.pullEvent = os.pullEventRaw
 
-
-
-
-os.loadAPI("kernel")
-os.loadAPI("tabmulti")
+os.loadAPI("/apis/kernel")
+os.loadAPI("/apis/tabmulti")
 term.setBackgroundColor(colors.lightBlue)
 kernel.reset()
 
 function tabRun(program, name)
-	tabmulti.newTab( shell.run(program), name )
+	tabmulti.newTab(shell.run(program), name)
 end
 
-
-local function drawDesktop()
+local function paintDesktop()
 	kernel.drawLine(kernel.y, colors.lightGray)
 	term.setCursorPos(1, kernel.y)
 	write("Term")
-	while true do
-		--if tabmulti.getCurrentTab() == "DeltaOS"
-		if kernel.spanClickEvent(1, kernel.y, 4, kernel.y, 1) then
-			tabRun("/rom/programs/shell", "Shell")
-		end
-	    --end
-	end
-
 end
 
+local function Desktop()
+	while true do
+		if tabmulti.getCurrentTab() == 1
+			if kernel.spanClickEvent(1, kernel.y, 4, kernel.y, 1) then
+				tabRun("/rom/programs/shell", "Shell")
+			end
+			paintDesktop()
+	    end
+	end
+end
 
 --[ Tabbed MultiTasking Gui ]--
 local tabScroll = 0
 
 function drawArrows()
-	term.setCursorPos(1,kernel.y)
+	term.setCursorPos(1,1)
 	term.setBackgroundColor(colors.gray)
 	term.write("<")
-	term.setCursorPos(kernel.x,kernel.y)
+	term.setCursorPos(kernel.x,1)
 	term.setBackgroundColor(colors.gray)
 	term.write(">")
 end
@@ -52,7 +48,7 @@ function drawTabs()
 	local currentTab = tabmulti.getCurrentTab()
 	
 	for i,v in pairs(tabNames) do
-		term.setCursorPos(i*5,kernel.y)
+		term.setCursorPos(i*5,1)
 		term.setBackgroundColor(colors.white)
 		term.write(v:sub(1,4).."|")
 	end
@@ -65,12 +61,12 @@ function drawTabs()
 end
 
 function tabClick()
-	local lArrow = kernel.spanClickEvent(1,kernel.y,1,kernel.y,"left")
-	local rArrow = kernel.spanClickEvent(kernel.x,kernel.y,kernel.x,kernel.y,"left")
+	local lArrow = kernel.spanClickEvent(1,1,1,1,"left")
+	local rArrow = kernel.spanClickEvent(kernel.x,1,kernel.x,1,"left")
 	local tabClicks = {}
 	
 	for i=0,math.floor(kernel.x/5) do
-		tabClicks[i+1] = kernel.spanClickEvent((i*5)+1, (i*5)+6, (i*5)+1, (i*5)+6, "left")
+		tabClicks[i+1] = kernel.spanClickEvent((i*5)+1, 1, (i*5)+6, 1, "left")
 	end
 	
 	if lArrow and tabScroll > 0 then
@@ -86,25 +82,13 @@ function tabClick()
 	end
 end
 
-
-
-
 local function basicMultitaskingCrap()
- tabmulti.newTab( drawDesktop, "DeltaOS" )
- while true do
- 	drawTabs()
- 	tabClick()
- 	tabmulti.runCurrentTab()
- end
+	tabmulti.newTab( Desktop, "DeltaOS" )
+	while true do
+		drawTabs()
+		tabClick()
+		tabmulti.runCurrentTab()
+	end
 end
 
-
-
-
-
 basicMultitaskingCrap()
-
-
-
-
-

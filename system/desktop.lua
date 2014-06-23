@@ -3,6 +3,8 @@ Give all multitasking thanks to AssossaGPG, who coded the Tabbed Multitasking AP
 Thank you, AssossaGPG :D
 ]]--
 
+local w, h = term.getSize()
+
 os.pullEvent = os.pullEventRaw
 
 os.loadAPI("/apis/kernel")
@@ -16,11 +18,11 @@ end
 
 local function paintDesktop()
 	kernel.drawLine(kernel.y, colors.lightGray)
-	term.setCursorPos(1, kernel.y)
+	term.setCursorPos(1, h)
 	write("Term")
 	while true do
-		if kernel.spanClickEvent(1, kernel.y, 4, kernel.y, 1) then
-			tabRun("/rom/programs/shell", "Shell"
+		if kernel.spanClickEvent(1, h, 4, h, 1) then
+			tabRun("/rom/programs/shell", "Shell")
 		end
 	end
 end

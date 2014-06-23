@@ -1,0 +1,8 @@
+--ik this isn't needed, but I hate putting the desktop env in startup.
+
+
+os.loadAPI("/delta/apis/kernel")
+os.loadAPI("/delta/apis/tabmulti")
+os.loadAPI("/delta/apis/dialog")
+
+shell.run("/delta/system/desktop.lua")

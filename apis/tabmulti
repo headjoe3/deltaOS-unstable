@@ -1,0 +1,103 @@
+--+-------------------------+--
+--| Tabbed MultiTasking Api |--
+--|        By Assossa       |--
+--+-------------------------+--
+
+--[ Local Variables ]--
+local tabs = {}
+local tabNames = {}
+local currentTab = 1
+local tempTab = nil
+local tempTabName = nil
+
+--[ Local Functions ]--
+local function wrapTabs(num,dir,list)
+	local i = num
+	if dir == 1 then
+		while i <= #list do
+			list[num]=list[num+1]
+			i = i + 1
+		end
+		list[#list] = nil
+	elseif dir == 2 then
+		while i >= num do
+			list[i+1]=list[i]
+			i = i - 1
+		end
+		list[num] = nil
+	end
+end
+
+--[ Public Functions ]--
+function newTab(func, tabname)
+	local num = #tabs+1
+	tabs[num]=coroutine.create(func)
+	tabNames[num]=tabname
+end
+
+function setTabName(index,name)
+	tabNames[index]=name
+end
+
+function getTabName(index)
+	return tabNames[index]
+end
+
+function getTabNames()
+	return tabNames
+end
+
+function getTabs()
+	return tabs
+end	
+
+function getCurrentTab()
+	return currentTab
+end
+
+function switchTab(new)
+	currentTab=new
+end
+
+function moveTab(num,num2)
+	tempTab = tabs[num]
+	tabs = wrapTabs(num,1,tabs)
+	tabs = wrapTabs(num2,2,tabs)
+	tabs[num2] = tempTab
+	
+	tempTabName = tabNames[num]
+	tabNames = wrapTabs(num,1,tabNames)
+	tabNames = wrapTabs(num2,2,tabNames)
+	tabNames[num2] = tempTabName
+end
+
+function closeTab(num)
+	tabs[num]=nil
+	tabNames[num]=nil
+	wrapTabs(num,1,tabs)
+	wrapTabs(num,1,tabNames)
+end
+
+function runTabs()
+	for i,v in pairs(tabs) do
+		if coroutine.status(v) ~= "dead" then
+			coroutine.resume(v)
+		else
+			closeTab(v)
+		end
+	end
+end
+
+function runCurrentTab()
+	for i,v in pairs(tabs) do
+	if coroutine.status(v) ~= "dead" then
+		if i == currentTab then
+			coroutine.resume(v)
+		else
+			coroutine.yield(v)
+		end
+		else
+			closeTab(v)
+		end
+	end
+end

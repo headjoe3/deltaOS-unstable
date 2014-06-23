@@ -53,9 +53,9 @@ function drawTabs()
 		term.write(v:sub(1,4).."|")
 	end
 	
-	if #tabNames >= math.floor(kernel.x / 5) then
-		drawArrows()
-	else
+	drawArrows()
+	
+	if #tabNames <= math.floor(kernel.x / 5) then
 		tabScroll = 0
 	end
 end

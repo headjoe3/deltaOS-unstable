@@ -1,0 +1,134 @@
+-- Thanks 1lann for this dialog api
+
+
+Dialog = {}
+Dialog.__index = Dialog
+
+Dialog.titleBarColor = colors.blue
+Dialog.titleTextColor = colors.white
+Dialog.contentBgColor = colors.lightGray
+Dialog.contentTextColor = colors.black
+Dialog.buttonColor = colors.white
+Dialog.buttonTextColor = colors.gray
+
+function Dialog.new(x, y, width, height, title, textArray, okButton, cancelButton)
+	local self = setmetatable({}, Dialog)
+	self:init(x, y, width, height, title, textArray, okButton, cancelButton)
+	self:redraw(x, y)
+	return self
+end
+
+function Dialog:init(x, y, width, height, title, textArray, okButton, cancelButton)
+	self.x = x
+	self.y = y
+	self.title = title
+	self.textArray = textArray
+	self.okButton = okButton
+	self.cancelButton = cancelButton
+	self.textArray = textArray
+
+	if not height then
+		if okButton then
+			self.height = #textArray + 5
+		else
+			self.height = #textArray + 3
+		end
+	end
+
+	if not width then
+		local widest = 0
+		for _, v in pairs(textArray) do
+			widest = math.max(widest, #v)
+		end
+		self.width = widest+4
+	end
+end
+
+function Dialog:redraw(x, y)
+	local wid, hei = term.getSize()
+	
+	if not x then
+		x = math.floor(wid/2 - self.width/2 + 0.5)
+	end
+	if not y then
+		y = math.floor(hei/2 - self.height/2 + 0.5)
+	end
+	
+	self.x = x
+	self.y = y
+	
+	-- Draw title bar
+	term.setCursorPos(self.x, self.y)
+	term.setBackgroundColor(Dialog.titleBarColor)
+	term.setTextColor(Dialog.titleTextColor)
+
+	term.write(string.rep(" ", self.width))
+	term.setCursorPos(self.x+math.floor((self.width/2)-(#self.title/2)), self.y)
+	term.write(self.title)
+
+	-- Draw contents area
+	term.setBackgroundColor(Dialog.contentBgColor)
+	term.setTextColor(Dialog.contentTextColor)
+
+	for i = 1, self.height-1 do
+		term.setCursorPos(self.x, self.y+i)
+		term.write(string.rep(" ", self.width))
+	end
+	
+	for i = 1, self.height-1 do
+		if i <= #self.textArray then
+			term.setCursorPos(self.x+math.floor((self.width/2)-(#self.textArray[i]/2)), self.y+i+1)
+			term.write(self.textArray[i])
+		else
+			break
+		end
+	end
+
+	-- Draw buttons
+	term.setBackgroundColor(Dialog.buttonColor)
+	term.setTextColor(Dialog.buttonTextColor)
+
+	if self.okButton then
+		self.buttonY = self.y+self.height-2
+		if self.cancelButton then
+			self.cancelButtonX = self.x+math.floor((self.width / 2) - 7) - 1
+			self.cancelButtonWidth = 8
+			term.setCursorPos(self.cancelButtonX, self.buttonY)
+			term.write(" CANCEL ")
+			
+			self.okButtonX = self.cancelButtonX + self.cancelButtonWidth + 4
+			self.okButtonWidth = 4
+			term.setCursorPos(self.okButtonX, self.buttonY)
+			term.write(" OK ")
+		else
+			self.okButtonX = self.x+math.floor((self.width / 2) - 1.5)
+			self.okButtonWidth = 4
+			term.setCursorPos(self.okButtonX, self.buttonY)
+			term.write(" OK ")
+		end
+	end
+end
+
+function Dialog:getButtonPressed(x, y)
+	if self.okButtonX and (x >= self.okButtonX) and (x < self.okButtonX + self.okButtonWidth) and (y == self.buttonY) then
+		return "ok"
+	elseif self.cancelButtonX and (x >= self.cancelButtonX) and (x < self.cancelButtonX + self.cancelButtonWidth) and (y == self.buttonY) then
+		return "cancel"
+	else
+		return false
+	end
+end
+
+function Dialog:autoCaptureEvents()
+	while true do
+		local e, button, x, y = os.pullEvent()
+		if e == "mouse_click" then
+			local ret = self:getButtonPressed(x, y)
+			if ret then
+				return ret
+			end
+		elseif e == "key" and button == 28 then
+			return "ok"
+		end
+	end
+end

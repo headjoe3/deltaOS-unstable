@@ -1,0 +1,74 @@
+--[[ 
+
+THANK YOU ASSOSSAGPG FOR FINDING MANY TYPOS AND ERRORS IN HERE.
+
+]]--
+
+x, y = term.getSize()
+
+function httpDownload(url, path)
+ local data = http.get(url)
+ local file = fs.open(path, "w")
+ file.write(data.readAll())
+ file.close()
+end
+
+function clickEvent(xA, yA, button)
+ local event, button1, x1 , y1 = os.pullEvent("mouse_click")
+ if xA == x1 and yA == y1 and button1 == button then
+  return true
+ else
+  return false
+ end
+end
+
+function spanClickEvent(x1, y1, x2, y2, button1) 
+ local event, button, xB, yB = os.pullEvent("mouse_click")
+ if x1 <= xB and y1 <= yB then
+  if x2 >= xB and y2 >= yB then
+   if button1 == button then
+    return true
+   else
+    return false
+   end
+  else
+   return false
+  end
+ else
+  return false
+ end
+end
+
+function reset()
+ term.clear()
+ term.setCursorPos(1, 1)
+end
+
+function drawImage(image, x, y)
+ local img  = paintutils.loadImage(image)
+ paintutils.drawImage(img, x, y)
+end
+
+function resetPos()
+ term.setCursorPos(1, 1)
+end
+
+function protectedRead()
+ local data = read("*")
+ return data
+end
+
+function drawLine(y1, color)
+ paintutils.drawLine(1, y, x, y1, color)
+end
+
+function catnip(func, ...)
+ -- Error-free function-running function. Good for debugging OR BSoDs.
+ -- Thanks MKLego and eliasrg2 and for this.
+ local ok, err = pcall(func, ...)
+ if ok == false and err ~= nil then
+  return err
+ else
+  return "noErr"
+ end
+end

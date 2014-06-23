@@ -1,6 +1,9 @@
 --[[
 Give all multitasking thanks to AssossaGPG, who coded the Tabbed Multitasking API.
 Thank you, AssossaGPG :D
+
+
+And thank you 1lann for the Dialog Box api
 ]]--
 
 local w, h = term.getSize()
@@ -9,6 +12,7 @@ os.pullEvent = os.pullEventRaw
 
 os.loadAPI("/apis/kernel")
 os.loadAPI("/apis/tabmulti")
+os.loadAPI("/apis/dialog")
 term.setBackgroundColor(colors.lightBlue)
 kernel.reset()
 

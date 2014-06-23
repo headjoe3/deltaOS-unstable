@@ -18,18 +18,13 @@ local function paintDesktop()
 	kernel.drawLine(kernel.y, colors.lightGray)
 	term.setCursorPos(1, kernel.y)
 	write("Term")
-end
-
-local function Desktop()
 	while true do
-		if tabmulti.getCurrentTab() == 1 then
-			if kernel.spanClickEvent(1, kernel.y, 4, kernel.y, 1) then
-				tabRun("/rom/programs/shell", "Shell")
-			end
-			paintDesktop()
-	    end
+		if kernel.spanClickEvent(1, kernel.y, 4, kernel.y, 1) then
+			tabRun("/rom/programs/shell", "Shell"
+		end
 	end
 end
+
 
 --[ Tabbed MultiTasking Gui ]--
 local tabScroll = 0
@@ -86,7 +81,7 @@ function tabClick()
 end
 
 local function basicMultitaskingCrap()
-	tabmulti.newTab( Desktop, "DeltaOS" )
+	tabmulti.newTab( paintDesktop, "DeltaOS" )
 	while true do
 		drawTabs()
 		tabClick()

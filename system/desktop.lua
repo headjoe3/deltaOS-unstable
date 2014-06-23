@@ -82,6 +82,7 @@ end
 
 local function basicMultitaskingCrap()
 	tabmulti.newTab( paintDesktop, "DeltaOS" )
+	tabmulti.switchTab("DeltaOS")
 	while true do
 		drawTabs()
 		tabClick()

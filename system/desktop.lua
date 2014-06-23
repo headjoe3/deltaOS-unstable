@@ -22,7 +22,7 @@ end
 
 local function Desktop()
 	while true do
-		if tabmulti.getCurrentTab() == 1
+		if tabmulti.getCurrentTab() == 1 then
 			if kernel.spanClickEvent(1, kernel.y, 4, kernel.y, 1) then
 				tabRun("/rom/programs/shell", "Shell")
 			end

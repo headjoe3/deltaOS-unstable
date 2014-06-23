@@ -37,9 +37,11 @@ local tabScroll = 0
 function drawArrows()
 	term.setCursorPos(1,1)
 	term.setBackgroundColor(colors.gray)
+	term.setTextColor(colors.black)
 	term.write("<")
 	term.setCursorPos(kernel.x,1)
 	term.setBackgroundColor(colors.gray)
+	term.setTextColor(colors.black)
 	term.write(">")
 end
 
@@ -50,6 +52,7 @@ function drawTabs()
 	for i,v in pairs(tabNames) do
 		term.setCursorPos(i*5,1)
 		term.setBackgroundColor(colors.white)
+		term.setTextColor(colors.black)
 		term.write(v:sub(1,4).."|")
 	end
 	

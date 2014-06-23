@@ -2,11 +2,12 @@
 Give all multitasking thanks to AssossaGPG, who coded the Tabbed Multitasking API.
 Thank you, AssossaGPG :D
 
-
 And thank you 1lann for the Dialog Box api
 ]]--
 
 local w, h = term.getSize()
+
+local tabProgs = {}
 
 os.pullEvent = os.pullEventRaw
 
@@ -16,8 +17,13 @@ os.loadAPI("/apis/dialog")
 term.setBackgroundColor(colors.lightBlue)
 kernel.reset()
 
+local function runProg(args)
+	shell.run(args[1])
+end
+
 function tabRun(program, name)
-	tabmulti.newTab(shell.run(program), name)
+	tabmulti.newTab(runProg, name)
+	tabProgs[name] = program
 end
 
 local function paintDesktop()
@@ -30,7 +36,6 @@ local function paintDesktop()
 		end
 	end
 end
-
 
 --[ Tabbed MultiTasking Gui ]--
 local tabScroll = 0
@@ -92,7 +97,17 @@ local function basicMultitaskingCrap()
 	while true do
 		drawTabs()
 		tabClick()
-		tabmulti.runCurrentTab()
+		local argNum = nil
+		for i,v in pairs(tabProgs) do
+			if tabmulti.getTabName(tabmulti.getCurrentTab) == v then
+				argNum = i
+			end
+		end
+		if argNum ~= nil then
+			tabmulti.runCurrentTab(tabProgs[argNum])
+		else
+			tabmulti.runCurrentTab()
+		end
 	end
 end
 

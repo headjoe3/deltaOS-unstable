@@ -78,21 +78,21 @@ function closeTab(num)
 	wrapTabs(num,1,tabNames)
 end
 
-function runTabs()
+function runTabs(...)
 	for i,v in pairs(tabs) do
 		if coroutine.status(v) ~= "dead" then
-			coroutine.resume(v)
+			coroutine.resume(v, arg)
 		else
 			closeTab(v)
 		end
 	end
 end
 
-function runCurrentTab()
+function runCurrentTab(...)
 	for i,v in pairs(tabs) do
 	if coroutine.status(v) ~= "dead" then
 		if i == currentTab then
-			coroutine.resume(v)
+			coroutine.resume(v, arg)
 		else
 			coroutine.yield(v)
 		end

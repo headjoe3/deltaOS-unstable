@@ -82,7 +82,7 @@ function tabClick()
 end
 
 local function basicMultitaskingCrap()
-	tabmulti.newTab( shell.run("/system/desktop.lua"), "DeltaOS" )
+	tabRun("/rom/programs/shell", "SHell")
 	tabmulti.switchTab("DeltaOS")
 	while true do
 		drawTabs()

@@ -12,7 +12,7 @@ local tabProgs = {}
 os.pullEvent = os.pullEventRaw
 
 os.loadAPI("/apis/kernel")
-os.loadAPI("/apis/tabmulti")
+
 os.loadAPI("/apis/dialog")
 term.setBackgroundColor(colors.lightBlue)
 kernel.reset()
@@ -82,7 +82,7 @@ function tabClick()
 end
 
 local function basicMultitaskingCrap()
-	tabRun("/rom/programs/shell", "SHell")
+	tabRun("/system/desktop.lua", "DeltaOS")
 	tabmulti.switchTab("DeltaOS")
 	while true do
 		drawTabs()

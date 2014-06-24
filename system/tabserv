@@ -17,14 +17,6 @@ os.loadAPI("/apis/dialog")
 term.setBackgroundColor(colors.lightBlue)
 kernel.reset()
 
-local function runProg(args)
-	shell.run(args[1])
-end
-
-function tabRun(program, name)
-	tabmulti.newTab(runProg, name)
-	tabProgs[name] = program
-end
 
 
 --[ Tabbed MultiTasking Gui ]--
@@ -80,6 +72,16 @@ function tabClick()
 		end
 	end
 end
+
+local function runProg(args)
+	shell.run(args[1])
+end
+
+function tabRun(program, name)
+	tabmulti.newTab(runProg, name)
+	tabProgs[name] = program
+end
+
 
 local function basicMultitaskingCrap()
 	tabRun("/system/desktop.lua", "DeltaOS")

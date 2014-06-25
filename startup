@@ -10,5 +10,5 @@ end
 --os.loadAPI("/apis/kernel")
 --os.loadAPI("/apis/tabmulti")
 --os.loadAPI("/apis/dialog")
-shell.run("/system/tabserv")
+shell.run("/system/desktop")
 return nil

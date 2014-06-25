@@ -1,5 +1,6 @@
 os.pullEvent = os.pullEventRaw
 
+os.loadAPI("/apis/dialog")
 
 term.setBackgroundColor(colors.lightBlue)
 term.clear()

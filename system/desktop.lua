@@ -1,6 +1,6 @@
 os.pullEvent = os.pullEventRaw
 
-dofile("/apis/dialog")
+dofile("/system/dialog")
 
 local function draw()
 term.setBackgroundColor(colors.lightBlue)

@@ -1,7 +1,14 @@
 --ik this isn't needed, but I hate putting the desktop env in startup.
-
-
-os.loadAPI("/apis/kernel")
-os.loadAPI("/apis/tabmulti")
-os.loadAPI("/apis/dialog")
+deltaOS = true
+--for programs who would like to know that is deltaOS or not installed
+--replaced os.loadAPIs with auto-api loading
+local apis = fs.list("/apis/")
+for k,v in pairs(apis) do
+os.loadAPI("/apis/"..v)
+end
+--commented these lines, becausei don't wanted to remove it:
+--os.loadAPI("/apis/kernel")
+--os.loadAPI("/apis/tabmulti")
+--os.loadAPI("/apis/dialog")
 shell.run("/system/tabserv")
+return nil

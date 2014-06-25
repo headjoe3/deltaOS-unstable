@@ -3,6 +3,7 @@ deltaOS = true
 --for programs who would like to know that is deltaOS or not installed
 
 
+version = "LYNX-1.0"
 
 local tApis = fs.list( "/apis" )
 for k, v in ipairs( tApis ) do
@@ -10,6 +11,16 @@ for k, v in ipairs( tApis ) do
   os.loadAPI("/apis/"..v)
  end
 end
+
+local data = http.get("https://raw.githubusercontent.com/FlareHAX0R/deltaOS/master/version")
+
+if data:readAll() ~= version then
+ shell.run("/system/update")
+end
+
+
+
+
 
 shell.run("/system/desktop.lua")
 

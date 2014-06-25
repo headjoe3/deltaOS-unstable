@@ -3,13 +3,11 @@ deltaOS = true
 --for programs who would like to know that is deltaOS or not installed
 
 
---replaced os.loadAPIs with auto-api loading
-local apis = fs.list("/apis/")
-for k,v in pairs(apis) do
-os.loadAPI("/apis/"..v)
+
+local apiLoc = fs.list("/apis")
+for k, v in pairs( fs.list(apiLoc) ) do
+ os.loadAPI(v)
 end
 
-os.unloadAPI("/apis/dialog")
-
 shell.run("/system/desktop.lua")
-return nil
+

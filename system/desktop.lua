@@ -18,7 +18,7 @@ draw()
 
 while true do
 	if kernel.clickEvent(1, kernel.y, 2) then
-		local d = dialog.dialog.new(nil, nil, nil, nil, "DeltaOS", {"Do you want to", "launch the shell?"}, true, false)
+		local d = dialog.Dialog.new(nil, nil, nil, nil, "DeltaOS", {"Do you want to", "launch the shell?"}, true, false)
 		if d:autoCaptureEvents() == true or d:autoCaptureEvents() == "ok" then
 			term.clear()
 			term.setCursorPos(1, 1)

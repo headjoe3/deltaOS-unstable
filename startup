@@ -4,9 +4,11 @@ deltaOS = true
 
 
 
-local apiLoc = fs.list("/apis")
-for k, v in pairs( fs.list(apiLoc) ) do
- os.loadAPI(v)
+local tApis = fs.list( "/apis" )
+for k, v in ipairs( tApis ) do
+ if not fs.isDir(v) then
+  os.loadAPI("/apis/"..v)
+ end
 end
 
 shell.run("/system/desktop.lua")

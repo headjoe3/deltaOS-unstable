@@ -1,5 +1,6 @@
 os.pullEvent = os.pullEventRaw
 
+dofile("/system/sAPI/dialog")
 
 local function draw()
 term.setBackgroundColor(colors.lightBlue)

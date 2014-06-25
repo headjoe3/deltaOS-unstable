@@ -14,6 +14,8 @@ write("D")
 end
 --os.loadAPI("/system/tabserv")
 
+draw()
+
 while true do
 	if kernel.clickEvent(1, kernel.y, 2) then
 		local d = dialog.dialog.new(nil, nil, nil, nil, "DeltaOS", {"Do you want to", "launch the shell?"}, true, false)

@@ -5,12 +5,24 @@ deltaOS = true
 
 version = "LYNX-1.0"
 
+
+
+
 local tApis = fs.list( "/apis" )
 for k, v in ipairs( tApis ) do
  if not fs.isDir(v) then
   os.loadAPI("/apis/"..v)
  end
 end
+
+term.setBackgroundColor(colors.lightGray)
+kernel.reset()
+kernel.drawLine(1, colors.lightBlue)
+kernel.drawLIne(kernel.y, colors.lightBlue)
+term.setBackgroundColor(colors.lightGray)
+term.setCursorPos(1, 1)
+term.setTextColor(colors.black)
+
 
 local data = http.get("https://raw.githubusercontent.com/FlareHAX0R/deltaOS/master/version")
 

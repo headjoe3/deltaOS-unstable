@@ -1,0 +1,30 @@
+-- Thanks ROFLCopter64bit or skwerlman for this code from LuaGRUB2
+
+
+local function trunc(s, i)
+	local mult = 10^(i or 0)
+	return math.floor(s * mult + 0.5) / mult
+end
+
+local function getCapacity()
+	local ii = 0
+	local i = 0
+	local wildcard = ""
+	repeat
+		i = 0
+		wildcard = wildcard .. "*/"
+		t = fs.find(wildcard)
+		for k = 1, #t do
+			if fs.getDrive(t[k]) == "hdd" then
+				i = i + 1
+				ii = ii + fs.getSize(t[k])
+			end
+		end
+	until i == 0
+	return ii + fs.getFreeSpace('/')
+end
+
+
+function totalKB()
+ return trunc(--[[getCapacity()]]fs.getFreeSpace('/') / 1024, 2)
+end

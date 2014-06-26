@@ -3,7 +3,7 @@ deltaOS = true
 --for programs who would like to know that is deltaOS or not installed
 
 
-version = "LYNX-1.0"
+version = "LYNX-1.1"
 
 
 
@@ -34,7 +34,13 @@ if data:readAll() ~= version then
  shell.run("/system/update")
 end
 
-sleep(1)
+if storage.totalKB() >= 10 then
+ term.setCursorPos(1, kernel.y/2)
+ term.clearLine()
+ graphics.cPrint(":( We detected that you are low on memory.")
+ graphics.cPrint("You have "..tostring(storage.totalKB()).." KB left.")
+
+sleep(1.5)
 
 
 

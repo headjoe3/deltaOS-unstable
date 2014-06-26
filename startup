@@ -36,6 +36,7 @@ if data:readAll() ~= version then
  graphics.cPrint("Updating...")
  sleep(0.5)
  shell.run("/system/update")
+ os.reboot()
 end
 
 if storage.totalKB() <= 10 then

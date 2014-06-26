@@ -26,11 +26,7 @@ end
 
 local function wake()
  for i=1, kernel.y do
-  if i ~= kernel.y then
-   graphics.drawLine(i, colors.lightBlue)
-  else
-   graphics.drawLine(i, colors.lightGray)
-  end
+  graphics.drawLine(i, colors.lightBlue)
   os.sleep(0.01)
  end
 end
@@ -68,7 +64,9 @@ local function sleepServ()
  		sleep()
  		local event = os.pullEvent()
  		if event == "key" or event == "mouse_click" then
+ 			os.sleep(0.)
  			wake()
+ 			os.sleep(0.1)
  			draw()
  		end
  	end

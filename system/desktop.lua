@@ -24,6 +24,17 @@ local function sleep()
  end
 end
 
+local function wake()
+ for i=1, kernel.y do
+  if i ~= kernel.y then
+   graphics.drawLine(i, colors.lightBlue)
+  else
+   graphics.drawLine(i, colros.lightGray)
+  end
+  os.sleep(0.01)
+ end
+end
+
 
 local function PtF(file)
  local data = fs.open(file, "r")
@@ -42,6 +53,7 @@ while true do
 			shell.run("/rom/programs/shell")
 			draw()
 		else
+			wake()
 			draw()
 		end
 	end

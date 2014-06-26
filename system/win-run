@@ -1,0 +1,53 @@
+local x = window.create(term.native(), kernel.x/2-9, kernel.y/2-2, 18, 4, true)
+
+local w, h = x.getSize()
+
+
+term.redirect(x)
+
+graphics.reset(colors.white, colors.black)
+graphics.cPrint("Program to Run:")
+
+paintutils.drawLine(2, 3, w-1, 3, colors.lightGray)
+
+term.setCursorPos(2, 3)
+
+local program = read()
+
+
+term.redirect( term.native() )
+
+x.setVisible(false)
+
+local p = window.create(term.native(), 2, 2, kernel.x-2, kernel.y-2, true)
+
+local cw, ch = p.getSize()
+
+
+term.redirect(p)
+
+graphics.reset(colors.lightGray, colors.blue)
+term.setCursorPos(1, ch/2)
+
+graphics.cPrint("DeltaOS windowX")
+
+
+graphics.drawImage("/system/logo.nfp", cw/2-11/2, ch/2+2)
+
+
+
+
+function prog()
+ shell.run(program)
+end 
+ 
+
+
+sleep(0.6)
+graphics.reset(colors.lightGray, colors.black)
+prog()
+
+
+sleep(0.6)
+p.setVisible(false)
+term.redirect(term.native())

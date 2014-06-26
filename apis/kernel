@@ -62,11 +62,12 @@ function drawLine(y1, color)
  paintutils.drawLine(1, y, x, y1, color)
 end
 
-function cPrint(text)
- local m = tonumber(string.len(text)/2)
- local cx, cy = term.getCursorPos()
- term.setCursorPos(w/2-m, 1)
- print(text)
+cPrint = function(text)
+        local x2,y2 = term.getCursorPos()
+        local x3,y3 = term.getSize()
+        term.setCursorPos(math.ceil((x3 / 2) - (text:len() / 2)), y2)
+        
+        print(text)
 end
 
 function catnip(func, ...)

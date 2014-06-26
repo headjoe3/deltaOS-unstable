@@ -46,3 +46,4 @@ sleep(1.5)
 
 shell.run("/system/desktop.lua")
 
+end

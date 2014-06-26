@@ -15,13 +15,11 @@ for k, v in ipairs( tApis ) do
  end
 end
 
-term.setBackgroundColor(colors.lightGray)
-kernel.reset()
-kernel.drawLine(1, colors.lightBlue)
-kernel.drawLIne(kernel.y, colors.lightBlue)
-term.setBackgroundColor(colors.lightGray)
+graphics.reset(colors.lightBlue, colors.black)
+graphics.drawLine(1, colors.lightBlue)
+graphics.drawLine(kernel.y, colors.lightBlue)
+term.setBackgroundColor(colors.lightBlue)
 term.setCursorPos(1, 2)
-term.setTextColor(colors.black)
 
 
 kernel.cPrint("DeltaOS")

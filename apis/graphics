@@ -1,5 +1,11 @@
 
-
+cPrint = function(text)
+        local x2,y2 = term.getCursorPos()
+        local x3,y3 = term.getSize()
+        term.setCursorPos(math.ceil((x3 / 2) - (text:len() / 2)), y2)
+        
+        print(text)
+end
 
 
 function drawLine(y, color)

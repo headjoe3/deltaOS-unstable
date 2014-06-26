@@ -32,16 +32,16 @@ term.setBackgroundColor(colors.lightBlue)
 local data = http.get("https://raw.githubusercontent.com/FlareHAX0R/deltaOS/master/version")
 
 if data:readAll() ~= version then
- term.setCursorPos(1, kernel.y/2)
+ term.setCursorPos(1, kernel.y/2+1)
  graphics.cPrint("Updating...")
  sleep(0.5)
  shell.run("/system/update")
 end
 
 if storage.totalKB() <= 10 then
- term.setCursorPos(1, kernel.y/2)
+ term.setCursorPos(1, kernel.y/2+1)
  term.clearLine()
- graphics.cPrint(":( We detected that you are low on memory.")
+ graphics.cPrint(":( We detected that you are low on storage space.")
  graphics.cPrint("You have "..tostring(storage.totalKB()).." KB left.")
 end
 sleep(1.5)

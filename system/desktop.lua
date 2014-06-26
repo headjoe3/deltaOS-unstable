@@ -17,6 +17,14 @@ end
 
 draw()
 
+local function PtF(file)
+ local data = fs.open(file, "r")
+ dataA = data:readAll()
+ data.close()
+ return dataA
+end
+
+local function shellServ() 
 while true do
 	if kernel.clickEvent(1, kernel.y, 2) then
 		local d = Dialog.new(nil, nil, nil, nil, "DeltaOS", {"Do you want to", "launch the shell?"}, true,true)
@@ -33,6 +41,6 @@ while true do
 		end
 	end
 end
-
+end
 
 

@@ -6,7 +6,7 @@ function sleep()
 end
 
 function closeIn()
- for i=1, kernel.y do
+ for i=1, kernel.x do
   paintutils.drawLine(i, 1, i, kernel.y, colors.black) 
   os.sleep(0.01)
  end

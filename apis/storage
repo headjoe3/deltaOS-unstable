@@ -26,5 +26,5 @@ end
 
 
 function totalKB()
- return trunc(--[[getCapacity()]]fs.getFreeSpace('/') / 1024, 2)
+ return tonumber(trunc(--[[getCapacity()]]fs.getFreeSpace('/') / 1024, 2))
 end

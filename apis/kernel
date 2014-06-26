@@ -63,8 +63,9 @@ function drawLine(y1, color)
 end
 
 function cPrint(text)
+ local m = tonumber(string.len(text)/2)
  local cx, cy = term.getCursorPos()
- term.setCursorPos(w/2-string.len(text)/2, 1)
+ term.setCursorPos(w/2-m, 1)
  print(text)
 end
 

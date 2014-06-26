@@ -72,7 +72,7 @@ local function sleepServ()
  		sleep()
  		local event = os.pullEvent()
  		if event == "key" or event == "mouse_click" then
- 			os.sleep(0.)
+ 			os.sleep(0.1)
  			wake()
  			os.sleep(0.1)
  			draw()

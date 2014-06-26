@@ -20,17 +20,23 @@ kernel.reset()
 kernel.drawLine(1, colors.lightBlue)
 kernel.drawLIne(kernel.y, colors.lightBlue)
 term.setBackgroundColor(colors.lightGray)
-term.setCursorPos(1, 1)
+term.setCursorPos(1, 2)
 term.setTextColor(colors.black)
+
+
+kernel.cPrint("DeltaOS")
 
 
 local data = http.get("https://raw.githubusercontent.com/FlareHAX0R/deltaOS/master/version")
 
 if data:readAll() ~= version then
+ term.setCursorPos(1, kernel.y/2)
+ cPrint("Updating...")
+ sleep(0.5)
  shell.run("/system/update")
 end
 
-
+sleep(1)
 
 
 

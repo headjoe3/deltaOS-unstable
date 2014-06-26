@@ -7,6 +7,10 @@ cPrint = function(text)
         print(text)
 end
 
+function drawImage(image, x, y)
+ local img = paintutils.loadImage(image)
+ paintutils.drawImage(img, x, y)
+end
 
 function drawLine(y, color)
  paintutils.drawLine(1, y, kernel.x, y, color)

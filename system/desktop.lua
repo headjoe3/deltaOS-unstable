@@ -29,7 +29,7 @@ local function wake()
   if i ~= kernel.y then
    graphics.drawLine(i, colors.lightBlue)
   else
-   graphics.drawLine(i, colros.lightGray)
+   graphics.drawLine(i, colors.lightGray)
   end
   os.sleep(0.01)
  end
@@ -53,7 +53,7 @@ while true do
 			shell.run("/rom/programs/shell")
 			draw()
 		else
-			wake()
+			
 			draw()
 		end
 	end
@@ -68,6 +68,7 @@ local function sleepServ()
  		sleep()
  		local event = os.pullEvent()
  		if event == "key" or event == "mouse_click" then
+ 			wake()
  			draw()
  		end
  	end

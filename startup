@@ -3,7 +3,7 @@ deltaOS = true
 --for programs who would like to know that is deltaOS or not installed
 
 
-version = "LYNX-1.1"
+version = "LYNX-1.2"
 
 
 
@@ -39,7 +39,7 @@ if storage.totalKB() >= 10 then
  term.clearLine()
  graphics.cPrint(":( We detected that you are low on memory.")
  graphics.cPrint("You have "..tostring(storage.totalKB()).." KB left.")
-
+end
 sleep(1.5)
 
 

@@ -1,0 +1,27 @@
+
+
+
+
+function drawLine(y, color)
+ paintutils.drawLine(1, y, kernel.x, y, color)
+end
+
+
+function drawBox(xA, xB, yA, yB, color)
+ for i=yA, yB do
+  paintutils.drawLine(xA, i, xB, i, color)
+ end
+end
+
+
+function reset(color, text)
+ if color ~= nil then
+ 	term.setBackgroundColor(color)
+ end
+
+ if text ~= nil then
+ 	term.setTextColor(text)
+ end
+ term.clear()
+ term.setCursorPos(1, 1)
+end

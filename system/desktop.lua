@@ -31,6 +31,7 @@ while true do
 	if kernel.clickEvent(1, kernel.y, 2) then
 		local d = Dialog.new(nil, nil, nil, nil, "DeltaOS", {"Do you want to", "launch the shell?"}, true,true)
 		if d:autoCaptureEvents() == "ok" then
+			draw()
 			animations.closeIn()
 			graphics.reset(colors.black, colors.white)
 			

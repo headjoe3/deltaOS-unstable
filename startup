@@ -16,8 +16,8 @@ for k, v in ipairs( tApis ) do
 end
 
 graphics.reset(colors.lightBlue, colors.black)
-graphics.drawLine(1, colors.lightBlue)
-graphics.drawLine(kernel.y, colors.lightBlue)
+graphics.drawLine(1, colors.lightGray)
+graphics.drawLine(kernel.y, colors.lightGray)
 term.setBackgroundColor(colors.lightBlue)
 term.setCursorPos(1, 2)
 

@@ -18,7 +18,7 @@ args[1] = "FlareHAX0R"                                                 -- Github
 args[2] = "DeltaOS"                                                               -- Github repo name
 args[3] = nil                                                                   -- Branch - defaults to "master"
 args[4] = nil                                                                   -- Path - defaults to root ("/")
---local pre_dl = "print('Starting download...')"  -- Command(s) to run before download starts.
+local pre_dl = "graphics.cPrint('Starting download...')"  -- Command(s) to run before download starts.
 --local post_dl = "print('Download complete!')"   -- Command(s) to run after download completes.
 --Remove the line below this and change the lines below to use automated mode.
 

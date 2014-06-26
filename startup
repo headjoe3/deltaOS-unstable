@@ -24,6 +24,10 @@ term.setCursorPos(1, 2)
 
 graphics.cPrint("DeltaOS")
 
+graphics.drawImage("/system/logo.nfp", kernel.x/2-11/2, 4)
+
+term.setBackgroundColor(colors.lightBlue)
+
 
 local data = http.get("https://raw.githubusercontent.com/FlareHAX0R/deltaOS/master/version")
 

@@ -36,6 +36,7 @@ while true do
 			
 			print("Run 'exit' to go back to deltaOS")
 			shell.run("/rom/programs/shell")
+			animations.wake()
 			draw()
 		else
 			

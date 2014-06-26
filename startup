@@ -22,14 +22,14 @@ term.setBackgroundColor(colors.lightBlue)
 term.setCursorPos(1, 2)
 
 
-kernel.cPrint("DeltaOS")
+graphics.cPrint("DeltaOS")
 
 
 local data = http.get("https://raw.githubusercontent.com/FlareHAX0R/deltaOS/master/version")
 
 if data:readAll() ~= version then
  term.setCursorPos(1, kernel.y/2)
- cPrint("Updating...")
+ graphics.cPrint("Updating...")
  sleep(0.5)
  shell.run("/system/update")
 end

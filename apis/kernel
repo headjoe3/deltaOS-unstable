@@ -62,13 +62,6 @@ function drawLine(y1, color)
  paintutils.drawLine(1, y, x, y1, color)
 end
 
-cPrint = function(text)
-        local x2,y2 = term.getCursorPos()
-        local x3,y3 = term.getSize()
-        term.setCursorPos(math.ceil((x3 / 2) - (text:len() / 2)), y2)
-        
-        print(text)
-end
 
 function catnip(func, ...)
  -- Error-free function-running function. Good for debugging OR BSoDs.

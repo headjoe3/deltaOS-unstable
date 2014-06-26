@@ -72,7 +72,7 @@ local function PtF(file)
  return dataA
 end
 
---[[
+
 local function shellServ() 
 while true do
 	if kernel.clickEvent(1, 1, 2) then
@@ -93,18 +93,8 @@ while true do
 	end
 end
 end
-]]--
 
-local function menuServ()
-	while true do
-		if kernel.clickEvent(1, 1, 1 ) then
-			term.setCursorPos(1, 1)
-			menu.runMenu(menuData)
-			menu.stopMenu()
-		end
-	end
-end
-			
+
 
 
 local function sleepServ()
@@ -123,7 +113,7 @@ local function sleepServ()
  end
 end
 
-parallel.waitForAll(sleepServ, menuServ)
+parallel.waitForAll(sleepServ, shellServ)
 
 
 

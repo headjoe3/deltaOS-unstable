@@ -3,7 +3,7 @@ deltaOS = true
 --for programs who would like to know that is deltaOS or not installed
 
 
-version = "LYNX-1.2"
+version = "LYNX-1.3"
 
 
 

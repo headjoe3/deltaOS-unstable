@@ -20,7 +20,7 @@ draw()
 local function sleep()
  for i=1, kernel.y do
   graphics.drawLine(i, colors.black)
-  sleep(0.6)
+  os.sleep(0.2)
  end
 end
 

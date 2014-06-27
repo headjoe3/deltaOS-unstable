@@ -1,5 +1,6 @@
 os.pullEvent = os.pullEventRaw
 
+os.loadAPI("/apis/users")
 
 local function clear()
 term.setBackgroundColor(colors.lightBlue)

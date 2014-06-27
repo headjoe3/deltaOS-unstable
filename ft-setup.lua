@@ -28,7 +28,7 @@ term.setCursorPos(2, kernel.y/2+4)
 
 local pass = read("*")
 
-user.newUser(user, pass)
+users.newUser(user, pass)
 
 graphics.reset(colors.lightGray, colors.black)
 

@@ -1,8 +1,58 @@
 os.pullEvent = os.pullEventRaw
 
 
-
-
+local function clear()
+term.setBackgroundColor(colors.lightBlue)
+term.setTextColor(colors.black)
+term.clear()
+term.setCursorPos(1,1)
+end
+local function makeUI()
+  w,h = term.getSize()
+  local lucx = w/2-7
+  local lucy = (h/2)-2
+  term.setCursorPos(lucx,lucy)
+  term.write("Login to DeltaOS:")
+  term.setCursorPos(lucx,lucy+1)
+  term.write("Username:")
+  term.setCursorPos(lucx,lucy+3)
+  term.write("Password:")
+  term.setCursorPos(lucx,lucy+2)
+  term.setBackgroundColor(colors.white)
+  term.write("              ")
+  term.setCursorPos(lucx,lucy+4)
+  term.write("              ")
+  return lucx,lucy
+end
+local function login_main()
+while true do
+clear()
+local lucx,lucy = makeUI()
+term.setCursorPos(lucx+1,lucy+2)
+local name = read()
+if not users.isUser(name) then
+clear()
+term.setCursorPos(lucx,lucy)
+term.write("Not valid username")
+sleep(3)
+os.reboot()
+end
+term.setCursorPos(lucx+1,lucy+4)
+local pass = read()
+local realpass = users.getPassword(name)
+if realpass ~= pass then
+clear()
+term.setCursorPos(lucx,lucy)
+term.write("Password incorrect")
+sleep(3)
+os.reboot()
+else
+users.login(name)
+return
+end
+end
+end
+login_main()
 dofile("/system/sApi/dialog")
 
 local function draw()

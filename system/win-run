@@ -1,3 +1,9 @@
+
+
+local tArgs = { ... }
+
+if tArgs[1] == nil then
+
 local x = window.create(term.current(), kernel.x/2-9, kernel.y/2-2, 18, 4, true)
 
 local w, h = x.getSize()
@@ -18,6 +24,9 @@ local program = read()
 term.redirect( term.native() )
 
 x.setVisible(false)
+else
+program = tArgs[1]
+end
 
 local p = window.create(term.current(), 2, 2, kernel.x-2, kernel.y-2, true)
 

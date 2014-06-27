@@ -10,7 +10,7 @@ end
 
 function closeIn()
  for i=1, w do
-  paintutils.drawLine(i, 1, i, kernel.y, colors.black) 
+  paintutils.drawLine(i, 1, i, h, colors.black) 
   os.sleep(0.01)
  end
 end

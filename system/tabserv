@@ -171,7 +171,7 @@ function tabRun(program, name)
 end
 
 local function tabMain()
-	tabRun("/system/desktop", "DeltaOS")
+	tabRun("/system/desktop.lua", "DeltaOS")
 	switchTab("DeltaOS")
 	while true do
 		drawTabs()
@@ -189,3 +189,6 @@ local function tabMain()
 		end
 	end
 end
+
+
+tabMain()

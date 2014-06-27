@@ -16,7 +16,7 @@ for k, v in ipairs( tApis ) do
 end
 
 
-if fs.exists("/system/setup_trigger") then
+if fs.exists("/system/.setup_trigger") then
  shell.run("/ft-setup.lua")
 end
 

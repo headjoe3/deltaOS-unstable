@@ -1,19 +1,22 @@
+local w, h = term.current().getSize()
+
+
 function sleep()
- for i=1, kernel.y do
+ for i=1, h do
   graphics.drawLine(i, colors.black)
   os.sleep(0.01)
  end
 end
 
 function closeIn()
- for i=1, kernel.x do
+ for i=1, w do
   paintutils.drawLine(i, 1, i, kernel.y, colors.black) 
   os.sleep(0.01)
  end
 end
 
 function wake()
- for i=1, kernel.y do
+ for i=1, h do
   graphics.drawLine(i, colors.lightBlue)
   os.sleep(0.01)
  end

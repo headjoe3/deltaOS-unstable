@@ -17,7 +17,7 @@ end
 
 
 if fs.exists("/system/setup_trigger") then
- shell.run("/ft-setup")
+ shell.run("/ft-setup.lua")
 end
 
 graphics.reset(colors.lightBlue, colors.black)

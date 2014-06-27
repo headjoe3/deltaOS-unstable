@@ -28,7 +28,7 @@ else
 program = tArgs[1]
 end
 
-local p = window.create(term.current(), 2, 2, kernel.x-2, kernel.y-2, true)
+local p = window.create(term.current(), 3, 3, kernel.x-3, kernel.y-3, true)
 
 local cw, ch = p.getSize()
 

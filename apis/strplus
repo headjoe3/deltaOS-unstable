@@ -1,0 +1,90 @@
+--strplus API by Konlab
+--for better manipulation of strings
+--version: 1.0
+function toCharTable(str)
+  if type(str) ~= "string" then
+    error("String needed, got "..type(str))
+    return
+  end
+  local t={}
+  for i=1,#str do
+    t[i] = str:sub(i,i)
+  end
+  return t
+end
+function fromCharTable(table)
+  if type(table) ~= "table" then
+    error("Char table needed, got "..type(table))
+    return
+  end
+  local str = ""
+  for k,v in pairs(table) do
+    str = str..v
+  end
+  return str
+end
+function separate(str,separator)
+  if type(str) ~= "string" then
+    error("String needed, got "..type(str))
+  elseif type(separator) ~= "string" then
+    error("Separator:String needed, got "..type(separator))
+  end
+  local t={}
+  for i=1,#str do
+    t[i] = str:sub(i,i)
+  end
+  local t2 = {}
+  local cstr = ""
+  local cindex = 0
+  for i=1,#t do
+    if t[i] == separator then
+      cindex = cindex+1
+      t2[cindex] = cstr
+      cstr = ""
+    else
+      cstr = cstr..t[i]
+    end
+  end
+  if cstr ~= "" then
+    t2[cindex+1] = cstr
+  end
+  return t2
+    
+end
+function replace(str,toreplace,replacewith)
+  if type(str) ~= "string" or type(toreplace) ~= "string" or type(replacewith) ~= "string" then
+    error("Cannot replace a "..type(str).." if thing to replace is "..type(toreplace).." and the thing with replace is "..type(replacewith))
+  end
+  t = {}
+  for i=1,#str do
+    t[i] = str:sub(i,i)
+  end
+  local retstr = ""
+  for i=1,#t do
+    if t[i] == toreplace then
+      retstr = retstr .. replacewith
+    else
+      retstr = retstr .. t[i]
+    end
+  end
+  return retstr
+end
+function unseparate(table,separator)
+  if type(table) ~= "table" then error("Table needed, got "..type(table)) end
+  if type(separator) ~= "string" then error("String needed as separator, got "..type(separator)) end
+  local string = ""
+  for i=1,#table do
+    string = string..table[i]..separator
+  end
+  return string
+end
+function indexChar(str,index)
+  if type(index) ~= "number" then error("As index, number needed, got "..type(index)) end
+  if type(str) ~= "string" then error("String needed, got "..type(str)) end
+  local char = str:sub(index,index)
+  return char
+end
+function credits()
+  local credits = "Created by Konlab, inspired by tomass1996's StrUtils API, but don't used any part of that API, I (Konlab) don't saw the StrUtils' code before creating this API, you can edit, redistribute, copy etc. if you give me credits"
+  return credits  
+end

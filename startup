@@ -15,6 +15,11 @@ for k, v in ipairs( tApis ) do
  end
 end
 
+
+if fs.exists("/system/setup_trigger") then
+ shell.run("/ft-setup")
+end
+
 graphics.reset(colors.lightBlue, colors.black)
 graphics.drawLine(1, colors.lightGray)
 graphics.drawLine(kernel.y, colors.lightGray)

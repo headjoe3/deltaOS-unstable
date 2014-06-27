@@ -1,0 +1,191 @@
+--[[
+Give all multitasking thanks to AssossaGPG, who coded the Tabbed Multitasking API.
+Thank you, AssossaGPG :D
+
+And thank you 1lann for the Dialog Box api
+]]--
+
+local w, h = term.getSize()
+
+--[ Local Variables ]--
+local tabs = {}
+local tabNames = {}
+local currentTab = 1
+local tempTab = nil
+local tempTabName = nil
+local tabProgs = {}
+
+os.loadAPI("/apis/kernel")
+os.loadAPI("/apis/dialog")
+
+--[ Local Functions ]--
+local function wrapTabs(num,dir,list)
+	local i = num
+	if dir == 1 then
+		while i <= #list do
+			list[num]=list[num+1]
+			i = i + 1
+		end
+		list[#list] = nil
+	elseif dir == 2 then
+		while i >= num do
+			list[i+1]=list[i]
+			i = i - 1
+		end
+		list[num] = nil
+	end
+end
+
+--[ Public Functions ]--
+function newTab(func, tabname)
+	local num = #tabs+1
+	tabs[num]=coroutine.create(func)
+	tabNames[num]=tabname
+end
+
+function setTabName(index,name)
+	tabNames[index]=name
+end
+
+function getTabName(index)
+	return tabNames[index]
+end
+
+function getTabNames()
+	return tabNames
+end
+
+function getTabs()
+	return tabs
+end	
+
+function getCurrentTab()
+	return currentTab
+end
+
+function switchTab(new)
+	currentTab=new
+end
+
+function moveTab(num,num2)
+	tempTab = tabs[num]
+	tabs = wrapTabs(num,1,tabs)
+	tabs = wrapTabs(num2,2,tabs)
+	tabs[num2] = tempTab
+	
+	tempTabName = tabNames[num]
+	tabNames = wrapTabs(num,1,tabNames)
+	tabNames = wrapTabs(num2,2,tabNames)
+	tabNames[num2] = tempTabName
+end
+
+function closeTab(num)
+	tabs[num]=nil
+	tabNames[num]=nil
+	wrapTabs(num,1,tabs)
+	wrapTabs(num,1,tabNames)
+end
+
+function runTabs(...)
+	for i,v in pairs(tabs) do
+		if coroutine.status(v) ~= "dead" then
+			coroutine.resume(v, arg)
+		else
+			closeTab(v)
+		end
+	end
+end
+
+function runCurrentTab(...)
+	for i,v in pairs(tabs) do
+	if coroutine.status(v) ~= "dead" then
+		if i == currentTab then
+			coroutine.resume(v, arg)
+		else
+			coroutine.yield(v)
+		end
+		else
+			closeTab(v)
+		end
+	end
+end
+
+--[ Tabbed MultiTasking Gui ]--
+local tabScroll = 0
+
+function drawArrows()
+	term.setCursorPos(1,1)
+	term.setBackgroundColor(colors.gray)
+	term.setTextColor(colors.black)
+	term.write("<")
+	term.setCursorPos(kernel.x,1)
+	term.setBackgroundColor(colors.gray)
+	term.setTextColor(colors.black)
+	term.write(">")
+end
+
+function drawTabs()
+	for i,v in pairs(tabNames) do
+		term.setCursorPos(i*5,1)
+		term.setBackgroundColor(colors.white)
+		term.setTextColor(colors.black)
+		term.write(v:sub(1,4).."|")
+	end
+	
+	drawArrows()
+	
+	if #tabNames <= math.floor(kernel.x / 5) then
+		tabScroll = 0
+	end
+end
+
+function tabClick()
+	local lArrow = kernel.spanClickEvent(1,1,1,1,"left")
+	local rArrow = kernel.spanClickEvent(kernel.x,1,kernel.x,1,"left")
+	local tabClicks = {}
+	
+	for i=0,math.floor(kernel.x/5) do
+		tabClicks[i+1] = kernel.spanClickEvent((i*5)+1, 1, (i*5)+6, 1, "left")
+	end
+	
+	if lArrow and tabScroll > 0 then
+		tabScroll = tabScroll - 1
+	end
+	if rArrow and tabScroll < #tabmulti.getTabs() * 5 then
+		tabScroll = tabScroll + 1
+	end
+	for i,v in pairs(tabClicks) do
+		if v then
+			switchTab(i+math.floor(tabScroll/5))
+		end
+	end
+end
+
+local function runProg(args)
+	shell.run(args[1])
+end
+
+function tabRun(program, name)
+	tabmulti.newTab(runProg, name)
+	tabProgs[name] = program
+end
+
+local function tabMain()
+	tabRun("/system/desktop", "DeltaOS")
+	switchTab("DeltaOS")
+	while true do
+		drawTabs()
+		tabClick()
+		local argNum = nil
+		for i,v in pairs(tabProgs) do
+			if tabmulti.getTabName(tabmulti.getCurrentTab) == v then
+				argNum = i
+			end
+		end
+		if argNum ~= nil then
+			tabmulti.runCurrentTab(tabProgs[argNum])
+		else
+			tabmulti.runCurrentTab()
+		end
+	end
+end

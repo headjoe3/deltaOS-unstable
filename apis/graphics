@@ -30,7 +30,7 @@ function reset(color, text)
  end
 
  if text ~= nil then
- 	term.current()setTextColor(text)
+ 	term.current().setTextColor(text)
  end
  term.current().clear()
  term.current().setCursorPos(1, 1)

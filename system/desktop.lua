@@ -119,7 +119,7 @@ local function sleepServ()
  	if key == 59 then
  		animations.sleep()
  		local event = os.pullEvent()
- 		if event == "key" or event == "mouse_click" then
+ 		if event == "key" or event == "mouse_click" or event == "monitor_touch" then
  			os.sleep(0.1)
  			animations.wake()
  			os.sleep(0.1)

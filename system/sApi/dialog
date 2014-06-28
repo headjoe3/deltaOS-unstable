@@ -122,7 +122,7 @@ end
 function Dialog:autoCaptureEvents()
 	while true do
 		local e, button, x, y = os.pullEvent()
-		if e == "mouse_click" then
+		if e == "mouse_click" or "monitor_touch" then
 			local ret = self:getButtonPressed(x, y)
 			if ret then
 				return ret

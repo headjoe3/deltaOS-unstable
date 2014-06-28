@@ -19,7 +19,7 @@ args[2] = "DeltaOS"                                                             
 args[3] = nil                                                                   -- Branch - defaults to "master"
 args[4] = nil                                                                   -- Path - defaults to root ("/")
 local pre_dl = "graphics.cPrint('Starting download...')"  -- Command(s) to run before download starts.
---local post_dl = "print('Download complete!')"   -- Command(s) to run after download completes.
+local post_dl = "os.reboot()"   -- Command(s) to run after download completes.
 --Remove the line below this and change the lines below to use automated mode.
 
 args[3] = args[3] or "master"
@@ -45,7 +45,7 @@ local function download(url, file)
 end
 
 if not json then
-        print("Downloading JSON api...\n(Credits to ElvishJerricco!)")
+        --print("Downloading JSON api...\n(Credits to ElvishJerricco!)")
         download("http://pastebin.com/raw.php?i=4nRg9CHU","json")
         os.loadAPI("json")
 end

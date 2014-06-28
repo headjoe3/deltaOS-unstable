@@ -39,7 +39,7 @@ sleep(3)
 os.reboot()
 end
 term.setCursorPos(lucx+1,lucy+4)
-local pass = read()
+local pass = read("*")
 local realpass = users.getPassword(name)
 if realpass ~= pass then
 clear()

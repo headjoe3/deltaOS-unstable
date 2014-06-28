@@ -1,8 +1,8 @@
 
 cPrint = function(text)
-        local x2,y2 = term.getCursorPos()
-        local x3,y3 = term.getSize()
-        term.setCursorPos(math.ceil((x3 / 2) - (text:len() / 2)), y2)
+        local x2,y2 = term.current().getCursorPos()
+        local x3,y3 = term.current().getSize()
+        term.current().setCursorPos(math.ceil((x3 / 2) - (text:len() / 2)), y2)
         
         print(text)
 end
@@ -26,12 +26,12 @@ end
 
 function reset(color, text)
  if color ~= nil then
- 	term.setBackgroundColor(color)
+ 	term.current().setBackgroundColor(color)
  end
 
  if text ~= nil then
- 	term.setTextColor(text)
+ 	term.current()setTextColor(text)
  end
- term.clear()
- term.setCursorPos(1, 1)
+ term.current().clear()
+ term.current().setCursorPos(1, 1)
 end

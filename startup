@@ -7,9 +7,9 @@ version = "LYNX-1.3"
 
 
 
-
+os.loadAPI("/apis/users")
 local tApis = fs.list( "/apis" )
-for k, v in ipairs( tApis ) do
+for k, v in pairs( tApis ) do
  if not fs.isDir(v) then
   os.loadAPI("/apis/"..v)
  end

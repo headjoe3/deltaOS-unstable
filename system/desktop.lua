@@ -4,7 +4,7 @@ os.pullEvent = os.pullEventRaw
 local function mainDesktop()
 
 isUnstable = true
-build = "3"
+build = "4"
 fullBuildName = "DeltaOS Unstable(build "..build..")"
 
 os.loadAPI("/apis/users")
@@ -152,11 +152,11 @@ local x = kernel.catnip(mainDesktop)
 if x ~= "noErr" then 
   graphics.reset(colors.blue, colors.white)
   print("")
+  term.setTextColor(colors.black)
   term.setBackgroundColor(colors.white)
-  term.setBackgroundColor(colors.black)
   graphics.cPrint("DeltaOS")
   term.setBackgroundColor(colors.blue)
-  term.setTextColor(colors.black)
+  term.setTextColor(colors.white)
   print("")
   graphics.cPrint("An error has occured.")
   graphics.cPrint("The error is: "..x)

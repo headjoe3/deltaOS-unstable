@@ -27,10 +27,10 @@ function notify(message)
   		end
 		if x>13 and x<21 and y == 11 then
 			return true
-			break
+			
   		elseif x>28 and x<39 and y == 11 then
 			return false
-			break
+			
   		end
 	end
 end

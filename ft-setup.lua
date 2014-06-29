@@ -72,7 +72,7 @@ term.setBackgroundColor(colors.lightGray)
 graphics.cPrint("Enter color(either name or hex): ")
 term.setCursorPos(2, kernel.y/2)
 term.setBackgroundColor(colors.gray)
-local backColor = tonumber( read() )
+local backColor = tostring( tonumber( read() ) )
 
 users.setUserSetting(user, "desktopColor", backColor)
 

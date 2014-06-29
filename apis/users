@@ -91,7 +91,7 @@ function getFile(name,filename)
 if not fs.exists('users/files/'..name..'/'..filename) then
 return false
 end
-local file = fs.open('users/files/'..name..'/'..filename,'r')
+local file = fs.open("users/set/"..name.."/"..filename, "r")
 local cont = file.readAll()
 file.close()
 return cont
@@ -99,7 +99,7 @@ end
 
 
 function getUserSetting(user, name)
- local set = fs.open("/user/settings/"..user.."/"..name, "r")
+ local set = fs.open("/user/set/"..user.."/"..name, "r")
  local v = set.readAll()
  set.close()
  return v
@@ -108,7 +108,7 @@ end
 
 
 function editUserSetting(user, name, value)
- local set = fs.open("/users/settings/"..user.."/"..name, "w")
+ local set = fs.open("/users/set/"..user.."/"..name, "w")
  set.write(value)
  set.close()
 end

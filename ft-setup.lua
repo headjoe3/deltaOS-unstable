@@ -1,3 +1,5 @@
+
+local function setup()
 graphics.reset(colors.lightGray, colors.black)
 graphics.cPrint("DeltaOS first-time setup")
 
@@ -78,6 +80,40 @@ graphics.cPrint("DeltaOS will reboot.")
 sleep(0.6)
 fs.delete("/system/.setup_trigger")
 os.reboot()
+end
 
+local x = kernel.catnip(setup)
+if x ~= "noErr" then 
+  graphics.reset(colors.blue, colors.white)
+  print("")
+  term.setBackgroundColor(colors.white)
+  term.setBackgroundColor(colors.black)
+  graphics.cPrint("DeltaOS")
+  term.setBackgroundColor(colors.blue)
+  term.setTextColor(colors.black)
+  print("")
+  graphics.cPrint("An error has occured.")
+  graphics.cPrint("The error is: "..x)
+  print("")
+  graphics.cPrint("Please report this error to ")
+  graphics.cPrint("the deltaOS repo.")
+  print("")
+  graphics.cPrint("DeltaOS Unstable repo: ")
+  graphics.cPrint("https://github.com/FlareHAX0R/deltaOS-unstable")
+  print("")
+  graphics.cPrint("DeltaOS Stable repo: ")
+  graphics.cPrint("https://github.com/FlareHAX0R/deltaOS")
+  print("")
+  graphics.cPrint("Press any key to continue.")
+  while true do
+     local event = os.pullEvent()
+     if event == "key" or "mouse_click" or "monitor_touch" then
+       os.reboot()
+     end
+  end
+end
+  
+  
+  
 
 

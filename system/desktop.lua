@@ -2,7 +2,7 @@ os.pullEvent = os.pullEventRaw
 
 isUnstable = true
 build = "1"
-fullBuildName = "DeltaOS Alpha(build "..build..")"
+fullBuildName = "DeltaOS Unstable(build "..build..")"
 
 os.loadAPI("/apis/users")
 

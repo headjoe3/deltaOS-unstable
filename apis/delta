@@ -1,36 +1,30 @@
 --APIs for generally interacting with DeltaOS
 
-function notify(message)
-		--term.setBackgroundColor()
-		graphics.reset(colors.lightGray)
-
-	for f = 7,13 do
-		term.setBackgroundColor(colors.whtie)
-		term.setCursorPos(1,f)
-		term.clearLine()
-		sleep(0.00)
-	end
-
-	term.setBackgroundColor(colors.white)
-	term.setTextColor(colors.black)
-	term.setCursorPos(1, 9)
-	graphics.cPrint(message)
-	term.setTextColor(colors.gray)
-	term.setCursorPos(1, 11)
-	graphics.cPrint("Approve        Disapprove")
-	
-	while true do
-		term.setTextColor(colors.gray)
-  		event, button, x, y = os.pullEvent("mouse_click")
-  		if x == nil or y == nil then
-       			graphics.cPrint("What")
-  		end
-		if x>13 and x<21 and y == 11 then
-			return true
-			
-  		elseif x>28 and x<39 and y == 11 then
-			return false
-			
-  		end
-	end
+function bsod(err)
+  print("")
+  term.setTextColor(colors.black)
+  term.setBackgroundColor(colors.white)
+  graphics.cPrint("DeltaOS")
+  term.setBackgroundColor(colors.blue)
+  term.setTextColor(colors.white)
+  print("")
+  graphics.cPrint("An error has occured.")
+  graphics.cPrint("The error is: "..err)
+  print("")
+  graphics.cPrint("Please report this error to ")
+  graphics.cPrint("the deltaOS repo.")
+  print("")
+  graphics.cPrint("DeltaOS Unstable repo: ")
+  graphics.cPrint("https://github.com/FlareHAX0R/deltaOS-unstable")
+  print("")
+  graphics.cPrint("DeltaOS Stable repo: ")
+  graphics.cPrint("https://github.com/FlareHAX0R/deltaOS")
+  print("")
+  graphics.cPrint("Press any key to continue.")
+  while true do
+     local event = os.pullEvent()
+     if event == "key" or "mouse_click" or "monitor_touch" then
+       os.reboot()
+     end
+  end
 end

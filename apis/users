@@ -99,7 +99,7 @@ end
 
 
 function getUserSetting(user, name)
- local set = fs.open("/user/set/"..user.."/"..name, "r")
+ local set = fs.open("/users/set/"..user.."/"..name, "r")
  local v = set:readAll()
  set.close()
  return v

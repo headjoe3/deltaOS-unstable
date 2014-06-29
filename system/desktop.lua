@@ -1,5 +1,8 @@
 os.pullEvent = os.pullEventRaw
 
+
+local function mainDesktop()
+
 isUnstable = true
 build = "1"
 fullBuildName = "DeltaOS Unstable(build "..build..")"
@@ -62,19 +65,19 @@ dofile("/system/sApi/dialog")
 
 local function draw()
 graphics.reset(users.getUserSetting(users.getUsername(), "desktopColor"))
-term.setCursorPos(1, kernel.y)
+term.current().setCursorPos(1, kernel.y)
 
 graphics.drawLine(1, colors.lightGray)
 
-term.setCursorPos(1, 1)
+term.current().setCursorPos(1, 1)
 
 write("D")
 
 if isUnstable then
- term.setBackgroundColor(colors.lightBlue)
- term.setCursorPos(kernel.x-string.len(fullBuildName), kernel.y)
+ term.current().setBackgroundColor(colors.lightBlue)
+ term.current().setCursorPos(kernel.x-string.len(fullBuildName), kernel.y)
  write(fullBuildName)
- term.setCursorPos(1, 1)
+ term.current().setCursorPos(1, 1)
 end
 
 end
@@ -143,7 +146,39 @@ end
 parallel.waitForAll(sleepServ, shellServ)
 
 
+end
 
+local x = kernel.catnip(mainDesktop)
+if x ~= "noErr" then 
+  graphics.reset(colors.blue, colors.white)
+  print("")
+  term.setBackgroundColor(colors.white)
+  term.setBackgroundColor(colors.black)
+  graphics.cPrint("DeltaOS")
+  term.setBackgroundColor(colors.blue)
+  term.setTextColor(colors.black)
+  print("")
+  graphics.cPrint("An error has occured.")
+  graphics.cPrint("The error is: "..x)
+  print("")
+  graphics.cPrint("Please report this error to ")
+  graphics.cPrint("the deltaOS repo.")
+  print("")
+  graphics.cPrint("DeltaOS Unstable repo: ")
+  graphics.cPrint("https://github.com/FlareHAX0R/deltaOS-unstable")
+  print("")
+  graphics.cPrint("DeltaOS Stable repo: ")
+  graphics.cPrint("https://github.com/FlareHAX0R/deltaOS")
+  print("")
+  graphics.cPrint("Press any key to continue.")
+  while true do
+     local event = os.pullEvent()
+     if event == "key" or "mouse_click" or "monitor_touch" then
+       os.reboot()
+     end
+  end
+end
+  
 
 
 

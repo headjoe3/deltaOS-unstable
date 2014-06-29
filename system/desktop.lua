@@ -99,7 +99,11 @@ local function PtF(file)
  local data = fs.open(file, "r")
  dataA = data:readAll()
  data.close()
- loadstring(dataA)
+ return dataA
+end
+
+local function shellPTF()
+	 loadstring( PtF("/rom/programs/shell") )
 end
 
 
@@ -113,7 +117,7 @@ while true do
 			graphics.reset(colors.black, colors.white)
 			
 			print("Run 'exit' to go back to deltaOS")
-			local err = kernel.catnip(PtF, "/rom/programs/shell")
+			local err = kernel.catnip(shellPTF)
 			if err ~= "noErr" then
 				delta.bsod(err)
 			end

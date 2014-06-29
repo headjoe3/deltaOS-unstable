@@ -41,8 +41,10 @@ if data:readAll() ~= version then
  term.setCursorPos(1, kernel.y/2+1)
  graphics.cPrint("Updating...")
  sleep(0.5)
- shell.run("/system/update")
- os.reboot()
+ print("")
+ graphics.cPrint("Updating is disabled for Unstable builds.")
+ --shell.run("/system/update")
+ --os.reboot()
 end
 
 if storage.totalKB() <= 10 then

@@ -4,7 +4,7 @@ os.pullEvent = os.pullEventRaw
 local function mainDesktop()
 
 isUnstable = true
-build = "11"
+build = "12"
 fullBuildName = "DeltaOS Unstable(build "..build..")"
 
 os.loadAPI("/apis/users")
@@ -95,13 +95,6 @@ draw()
 
 
 
-local function PtF(file)
- local data = fs.open(file, "r")
- dataA = data:readAll()
- data.close()
- dofile(dataA)
-end
-
 
 
 local function shellServ() 
@@ -114,7 +107,7 @@ while true do
 			graphics.reset(colors.black, colors.white)
 			
 			print("Run 'exit' to go back to deltaOS")
-			local err = kernel.catnip(PtF, "/rom/programs/shell")
+			local err = kernel.catnip(dofile, "/rom/programs/shell")
 			if err ~= "noErr" then
 				delta.bsod(err)
 			end

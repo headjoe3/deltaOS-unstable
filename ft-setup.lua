@@ -64,16 +64,18 @@ print("")
 graphics.cPrint("III. Background Color")
 
 
---[[
+
 paintutils.drawLine(2, kernel.y/2, kernel.x-1, kernel.y/2, colors.gray)
 term.setCursorPos(1, kernel.y/2-2)
 
+term.setBackgroundColor(colors.lightGray)
 graphics.cPrint("Enter color(either name or hex): ")
 term.setCursorPos(2, kernel.y/2)
-local backColor = tonumber(read())
+local backColor = tonumber( read() )
 
 users.setUserSetting(user, "desktopColor", backColor)
-]]--
+
+
 graphics.reset(colors.lightGray, colors.black)
 graphics.cPrint("First time setup is finished.")
 graphics.cPrint("DeltaOS will reboot.")

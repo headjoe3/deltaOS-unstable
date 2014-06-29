@@ -99,11 +99,11 @@ local function PtF(file)
  local data = fs.open(file, "r")
  dataA = data:readAll()
  data.close()
- return dataA
+ loadfile(PtF)
 end
 
 local function shellPTF()
-	 dofile( "/rom/programs/shell" )
+	 loadfile( "/rom/programs/shell" )
 end
 
 

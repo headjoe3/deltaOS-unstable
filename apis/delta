@@ -1,0 +1,36 @@
+--APIs for generally interacting with DeltaOS
+
+function notify(message)
+		--term.setBackgroundColor()
+		graphics.reset(colors.lightGray)
+
+	for f = 7,13 do
+		term.setBackgroundColor(colors.whtie)
+		term.setCursorPos(1,f)
+		term.clearLine()
+		sleep(0.00)
+	end
+
+	term.setBackgroundColor(colors.white)
+	term.setTextColor(colors.black)
+	term.setCursorPos(1, 9)
+	graphics.cPrint(message)
+	term.setTextColor(colors.gray)
+	term.setCursorPos(1, 11)
+	graphics.cPrint("Approve        Disapprove")
+	
+	while true do
+		term.setTextColor(colors.gray)
+  		event, button, x, y = os.pullEvent("mouse_click")
+  		if x == nil or y == nil then
+       			cPrint("What")
+  		end
+		if x>13 and x<21 and y == 11 then
+			return true
+			break
+  		elseif x>28 and x<39 and y == 11 then
+			return false
+			break
+  		end
+	end
+end

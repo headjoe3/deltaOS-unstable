@@ -103,7 +103,7 @@ local function PtF(file)
 end
 
 local function shellPTF()
-	 loadstring( PtF("/rom/programs/shell") )
+	 dofile( "/rom/programs/shell" )
 end
 
 

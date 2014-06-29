@@ -4,7 +4,7 @@ THANK YOU ASSOSSAGPG FOR FINDING MANY TYPOS AND ERRORS IN HERE.
 
 ]]--
 
-x, y = term.getSize()
+x, y = term.current().getSize()
 
 function httpDownload(url, path)
  local data = http.get(url)
@@ -40,8 +40,8 @@ function spanClickEvent(x1, y1, x2, y2, button1)
 end
 
 function reset()
- term.clear()
- term.setCursorPos(1, 1)
+ term.current().clear()
+ term.current().setCursorPos(1, 1)
 end
 
 function drawImage(image, x, y)
@@ -50,7 +50,7 @@ function drawImage(image, x, y)
 end
 
 function resetPos()
- term.setCursorPos(1, 1)
+ term.current().setCursorPos(1, 1)
 end
 
 function protectedRead()

@@ -99,16 +99,14 @@ end
 
 
 function getUserSetting(user, name)
- local set = fs.open("/users/set/"..user.."/"..name, "r")
- local v = set:readAll()
- set.close()
- return v
+ local set = getFile(user, "settings/"..name)
+ return set
 end
 
 
 
 function setUserSetting(user, name, value)
- local set = fs.open("/users/set/"..user.."/"..name, "w")
+ local set = fs.open("/users/files/"..user.."/settings/"..name, "w")
  set.write(value)
  set.close()
 end

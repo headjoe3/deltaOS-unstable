@@ -23,7 +23,7 @@ function notify(message)
 		term.setTextColor(colors.gray)
   		event, button, x, y = os.pullEvent("mouse_click")
   		if x == nil or y == nil then
-       			cPrint("What")
+       			graphics.cPrint("What")
   		end
 		if x>13 and x<21 and y == 11 then
 			return true

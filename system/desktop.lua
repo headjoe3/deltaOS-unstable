@@ -1,5 +1,9 @@
 os.pullEvent = os.pullEventRaw
 
+isUnstable = true
+build = "1"
+fullBuildName = "DeltaOS Alpha(build "..build..")"
+
 os.loadAPI("/apis/users")
 
 local function clear()
@@ -65,6 +69,12 @@ graphics.drawLine(1, colors.lightGray)
 term.setCursorPos(1, 1)
 
 write("D")
+
+if isUnstable then
+ term.setBackgroundColor(colors.lightBlue)
+ term.setCursorPos(kernel.x-string.len(fullBuildName), kernel.y)
+ write(fullBuildName)
+ term.setCursorPos(1, 1)
 end
 
 

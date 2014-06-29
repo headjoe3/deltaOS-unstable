@@ -107,7 +107,7 @@ end
 
 
 
-function editUserSetting(user, name, value)
+function setUserSetting(user, name, value)
  local set = fs.open("/users/set/"..user.."/"..name, "w")
  set.write(value)
  set.close()

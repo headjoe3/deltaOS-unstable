@@ -1,6 +1,7 @@
 --APIs for generally interacting with DeltaOS
 
 function bsod(err)
+  graphics.reset(colors.blue)
   print("")
   term.setTextColor(colors.black)
   term.setBackgroundColor(colors.white)

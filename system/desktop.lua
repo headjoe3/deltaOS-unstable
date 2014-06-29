@@ -4,7 +4,7 @@ os.pullEvent = os.pullEventRaw
 local function mainDesktop()
 
 isUnstable = true
-build = "2"
+build = "3"
 fullBuildName = "DeltaOS Unstable(build "..build..")"
 
 os.loadAPI("/apis/users")
@@ -64,7 +64,7 @@ login_main()
 dofile("/system/sApi/dialog")
 
 local function draw()
-graphics.reset( colors.lightBlue )
+graphics.reset( users.getUserSetting( users.getUserName(), "desktopColor" ) )
 term.current().setCursorPos(1, kernel.y)
 
 graphics.drawLine(1, colors.lightGray)

@@ -64,7 +64,7 @@ login_main()
 dofile("/system/sApi/dialog")
 
 local function draw()
-graphics.reset( users.getUserSetting( users.getUserName(), "desktopColor" ) )
+graphics.reset( colors.lightBlue )
 term.current().setCursorPos(1, kernel.y)
 
 graphics.drawLine(1, colors.lightGray)

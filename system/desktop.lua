@@ -107,10 +107,7 @@ while true do
 			graphics.reset(colors.black, colors.white)
 			
 			print("Run 'exit' to go back to deltaOS")
-			local err = kernel.catnip(dofile, "/rom/programs/shell")
-			if err ~= "noErr" then
-				delta.bsod(err)
-			end
+			shell.run("/rom/programs/shell")
 			animations.wake()
 			draw()
 		else

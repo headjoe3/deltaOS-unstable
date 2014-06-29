@@ -4,7 +4,7 @@ os.pullEvent = os.pullEventRaw
 local function mainDesktop()
 
 isUnstable = true
-build = "10"
+build = "11"
 fullBuildName = "DeltaOS Unstable(build "..build..")"
 
 os.loadAPI("/apis/users")
@@ -99,7 +99,7 @@ local function PtF(file)
  local data = fs.open(file, "r")
  dataA = data:readAll()
  data.close()
- loadstring(dataA)
+ dofile(dataA)
 end
 
 

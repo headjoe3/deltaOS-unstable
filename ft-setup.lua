@@ -29,7 +29,7 @@ term.setCursorPos(2, kernel.y/2+4)
 local pass = read("*")
 
 users.newUser(user, pass)
-fs.delete("/system/.setup_trigger")
+
 graphics.reset(colors.lightGray, colors.black)
 
 graphics.cPrint("DeltaOS first-time setup")
@@ -55,8 +55,28 @@ os.setComputerLabel(label)
 
 graphics.reset(colors.lightGray, colors.black)
 
+graphics.reset(colors.lightGray, colors.black)
+
+graphics.cPrint("DeltaOS first-time setup")
+print("")
+graphics.cPrint("III. Background Color")
+
+
+
+paintutils.drawLine(2, kernel.y/2, kernel.x-1, kernel.y/2, colors.gray)
+term.setCursorPos(1, kernel.y/2-2)
+
+graphics.cPrint("Enter color(either name or hex): ")
+term.setCursorPos(2, kernel.y/2)
+local backColor = read()
+
+users.setUserSetting(user, "desktopColor", backColor)
+
+graphics.reset(colors.lightGray, colors.black)
 graphics.cPrint("First time setup is finished.")
 graphics.cPrint("DeltaOS will reboot.")
+sleep(0.6)
+fs.delete("/system/.setup_trigger")
 os.reboot()
 
 

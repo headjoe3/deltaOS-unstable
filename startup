@@ -6,6 +6,12 @@ deltaOS = true
 version = "LYNX-1.4"
 
 
+os.loadAPI("/apis/delta")
+os.loadAPI("/apis/kernel")
+os.loadAPI("/apis/graphics")
+
+
+local function loadDeltaOS()
 
 os.loadAPI("/apis/users")
 local tApis = fs.list( "/apis" )
@@ -58,3 +64,12 @@ sleep(1.5)
 
 
 shell.run("/system/desktop.lua")
+end
+
+
+local err = kernel.catnip(loadDeltaOS)
+if err ~= "noErr" then
+ delta.bsod(err)
+end
+
+

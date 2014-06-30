@@ -141,8 +141,8 @@ parallel.waitForAll(sleepServ, shellServ)
 
 end
 
-local x = kernel.catnip(mainDesktop)
-if x ~= "noErr" then 
+local err = kernel.catnip(mainDesktop)
+if err ~= "noErr" then 
   graphics.reset(colors.blue, colors.white)
   print("")
   term.current().setTextColor(colors.black)

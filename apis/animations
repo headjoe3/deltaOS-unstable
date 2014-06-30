@@ -21,3 +21,8 @@ function wake()
   os.sleep(0.01)
  end
 end
+
+
+function shutdown()
+ parallel.waitForAll(sleep, closeIn)
+end

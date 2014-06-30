@@ -40,8 +40,17 @@ graphics.drawImage("/system/logo.nfp", kernel.x/2-11/2, 4)
 
 term.setBackgroundColor(colors.lightBlue)
 
+--[[
+local data = http.get("https://raw.githubusercontent.com/FlareHAX0R/deltaOS/master/version")
 
-
+if data:readAll() ~= version then
+ term.setCursorPos(1, kernel.y/2+1)
+ graphics.cPrint("Updating...")
+ sleep(0.5)
+ shell.run("/system/update")
+ os.reboot()
+end
+]]--
 
 if storage.totalKB() <= 10 then
  term.setCursorPos(1, kernel.y/2+1)

@@ -63,15 +63,20 @@ end
 login_main()
 dofile("/system/sApi/dialog")
 
+
+local function drawBar()
+	graphics.drawLine(1, colors.lightGray)
+
+	term.current().setCursorPos(1, 1)
+
+	term.current().write("D")
+end
+
 local function draw()
 graphics.reset( colors.lightBlue )
 term.current().setCursorPos(1, kernel.y)
 
-graphics.drawLine(1, colors.lightGray)
-
-term.current().setCursorPos(1, 1)
-
-write("D")
+drawBar()
 
 if isUnstable then
  term.current().setBackgroundColor( colors.lightBlue )
@@ -93,6 +98,11 @@ end
 draw()
 
 
+local function barServ()
+	while true do
+		drawBar()
+	end
+end
 
 
 
@@ -105,6 +115,7 @@ while true do
 			draw()
 			animations.closeIn()
 			graphics.reset(colors.black, colors.white)
+			term.setCursorPos(1, 2)
 			
 			print("Run 'exit' to go back to deltaOS")
 			shell.run("/rom/programs/shell")
@@ -136,7 +147,7 @@ local function sleepServ()
  end
 end
 
-parallel.waitForAll(sleepServ, shellServ)
+parallel.waitForAll(sleepServ, shellServ, barServ)
 
 
 end

@@ -5,6 +5,7 @@ local function mainDesktop()
 
 n = {  }
 local isAppOpen = false
+local redraw = false
 
 
 isUnstable = true
@@ -109,7 +110,14 @@ local function barServ()
 end
 
 
-
+local function redrawServ()
+	while true do
+		if redraw == true then
+			draw()
+			redraw = false
+		end
+end
+end
 
 local function shellServ() 
 while true do
@@ -163,7 +171,10 @@ local function notifcationServ()
 					term.setCursorPos(1, 2)
 					paintutils.drawLine(cy, colors.lightGray)
 					graphics.cPrint(nn[i])
-					draw()
+					if i == #n then
+						redraw = true
+					end
+					
 				end
         		end
         	end
@@ -182,7 +193,7 @@ end
 
 
 
-parallel.waitForAll(sleepServ, shellServ, barServ, addNotifyServ, notifcationServ)
+parallel.waitForAll(sleepServ, shellServ, barServ, redrawServ, addNotifyServ, notifcationServ)
 
 
 end
@@ -198,7 +209,7 @@ if err ~= "noErr" then
   term.current().setTextColor(colors.white)
   print("")
   graphics.cPrint("An error has occured.")
-  graphics.cPrint("The error is: "..x)
+  graphics.cPrint("The error is: "..tostring(x))
   print("")
   graphics.cPrint("Please report this error to ")
   graphics.cPrint("the deltaOS repo.")

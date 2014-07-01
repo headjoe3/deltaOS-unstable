@@ -103,21 +103,17 @@ end
 draw()
 
 
-local function barServ()
-	while true do
-		drawBar()
-	end
-end
-
 
 local function redrawServ()
 	while true do
-		if redraw == true then
+		local event = os.pullEvent()
+		if event == "redraw" then
 			draw()
-			redraw = false
 		end
+		sleep(0)
+	end
 end
-end
+		
 
 local function shellServ() 
 while true do
@@ -128,10 +124,10 @@ while true do
 			animations.closeIn()
 			graphics.reset(colors.black, colors.white)
 			term.setCursorPos(1, 2)
-			isAppOpen = true
+			--isAppOpen = true
 			print("Run 'exit' to go back to deltaOS")
 			shell.run("/rom/programs/shell")
-			isAppOpen = false
+			--isAppOpen = false
 			animations.wake()
 			draw()
 		else
@@ -161,39 +157,11 @@ local function sleepServ()
 end
 
 
-local function notifcationServ()
-	while true do
-		if isAppOpen == false then
-			if n[1] ~= nil then
-				for i=1, #n do
-					local nn = strplus.seperate(n[i], "|")
-					local cx, cy = term.getCursorPos()
-					term.setCursorPos(1, 2)
-					paintutils.drawLine(cy, colors.lightGray)
-					graphics.cPrint(nn[i])
-					if i == #n then
-						redraw = true
-					end
-					
-				end
-        		end
-        	end
-	end
-end
-
-
-local function addNotifyServ()
-	while true do
-		local event, p1 = os.pullEvent("notify")
-		table.add(n, p1)
-		
-	end
-end
 
 
 
 
-parallel.waitForAll(sleepServ, shellServ, addNotifyServ, notifcationServ)
+parallel.waitForAll(sleepServ, shellServ, redrawServ)
 
 
 end

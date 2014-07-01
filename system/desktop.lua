@@ -106,20 +106,18 @@ draw()
 local function barServ()
 	while true do
 		drawBar()
-		sleep(0.1)
 	end
 end
 
 
 local function redrawServ()
 	while true do
-		local event = os.pullEvent()
-		if event == "redraw" then
+		if redraw == true then
 			draw()
+			redraw = false
 		end
-	end
 end
-
+end
 
 local function shellServ() 
 while true do
@@ -163,10 +161,39 @@ local function sleepServ()
 end
 
 
+local function notifcationServ()
+	while true do
+		if isAppOpen == false then
+			if n[1] ~= nil then
+				for i=1, #n do
+					local nn = strplus.seperate(n[i], "|")
+					local cx, cy = term.getCursorPos()
+					term.setCursorPos(1, 2)
+					paintutils.drawLine(cy, colors.lightGray)
+					graphics.cPrint(nn[i])
+					if i == #n then
+						redraw = true
+					end
+					
+				end
+        		end
+        	end
+	end
+end
+
+
+local function addNotifyServ()
+	while true do
+		local event, p1 = os.pullEvent("notify")
+		table.add(n, p1)
+		
+	end
+end
 
 
 
-parallel.waitForAll( sleepServ, shellServ, barServ, redrawServ )
+
+parallel.waitForAll(sleepServ, shellServ, barServ, addNotifyServ, notifcationServ)
 
 
 end
@@ -202,12 +229,6 @@ if err ~= "noErr" then
   end
 end
   
-
-
-
-
-
-
 
 
 

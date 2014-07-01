@@ -193,7 +193,7 @@ end
 
 
 
-parallel.waitForAll(sleepServ, shellServ, barServ, addNotifyServ, notifcationServ)
+parallel.waitForAll(sleepServ, shellServ, addNotifyServ, notifcationServ)
 
 
 end

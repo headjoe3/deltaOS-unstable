@@ -8,7 +8,7 @@ local isAppOpen = false
 
 
 isUnstable = true
-build = "17"
+build = "18"
 fullBuildName = "DeltaOS Unstable(build "..build..")"
 
 os.loadAPI("/apis/users")
@@ -155,7 +155,7 @@ end
 
 local function notifcationServ()
 	while true do
-		if isAppOpen = false then
+		if isAppOpen == false then
 			if n[1] ~= nil then
 				for i=1, #n do
 					local nn = strplus.seperate(n[i], "|")
@@ -163,6 +163,7 @@ local function notifcationServ()
 					term.setCursorPos(1, 2)
 					paintutils.drawLine(cy, colors.lightGray)
 					graphics.cPrint(nn[i])
+					draw()
 				end
         		end
         	end

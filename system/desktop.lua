@@ -9,7 +9,7 @@ local redraw = false
 
 
 isUnstable = true
-build = "18"
+build = "20"
 fullBuildName = "DeltaOS Unstable(build "..build..")"
 
 os.loadAPI("/apis/users")
@@ -104,16 +104,6 @@ draw()
 
 
 
-local function redrawServ()
-	while true do
-		local event = os.pullEvent()
-		if event == "redraw" then
-			draw()
-		end
-		sleep(0)
-	end
-end
-		
 
 local function shellServ() 
 while true do
@@ -123,7 +113,7 @@ while true do
 			draw()
 			animations.closeIn()
 			graphics.reset(colors.black, colors.white)
-			term.setCursorPos(1, 2)
+			--term.setCursorPos(1, 2)
 			--isAppOpen = true
 			print("Run 'exit' to go back to deltaOS")
 			shell.run("/rom/programs/shell")
@@ -161,9 +151,7 @@ end
 
 
 
-parallel.waitForAll(sleepServ, shellServ, redrawServ)
-
-
+parallel.waitForAll(sleepServ, shellServ)
 end
 
 local err = kernel.catnip(mainDesktop)

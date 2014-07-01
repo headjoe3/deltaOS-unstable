@@ -119,7 +119,7 @@ local function redrawServ()
 		end
 	end
 end
-end
+
 
 local function shellServ() 
 while true do

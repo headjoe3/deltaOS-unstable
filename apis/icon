@@ -1,0 +1,13 @@
+function calc(x, y, sos) --x,y,SizeOfSlot
+ if y <= 1 then
+  return {(x-(sos+1))/sos, 1}
+ else
+  return {(x-(sos+1))/sos,(y-(sos+ 1))/sos}
+ end
+end
+
+
+function totalCalc(x, y, sos)
+ local z = calc(x, y, sos)
+ return z[1]+z[2]
+end

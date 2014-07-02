@@ -1,0 +1,12 @@
+--App Info Manager
+--By aepic101
+
+function appret(name)
+  local load = fs.open("/apps/" .. name .. "/appinfo")
+  local cmp = textutils.unserialize(load.readAll())
+end
+shell.setDir("/apps")
+for i in fs.list() do
+  os.loadAPI(i.."/.conf")
+end  
+  

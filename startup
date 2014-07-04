@@ -1,3 +1,5 @@
+os.pullEvent = os.pullEventRaw
+
 --ik this isn't needed, but I hate putting the desktop env in startup.
 deltaOS = true
 --for programs who would like to know that is deltaOS or not installed

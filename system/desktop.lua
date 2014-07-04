@@ -80,7 +80,7 @@ end
 
 local function draw()
 graphics.reset( colors.lightBlue )
-term.current().setCursorPos(kernel.x-(kernel.x-1), kernel.y)
+term.current().setCursorPos(kernel.x-(kernel.x-1), 1)
 
 drawBar()
 
@@ -108,7 +108,7 @@ draw()
 
 local function shellServ() 
 while true do
-	if kernel.clickEvent(kernel.x-(kernel.x-1), 1, 2) then
+	if kernel.clickEvent(kernel.x-(kernel.x-1), kernel.y-(kernel.y-1), 2) then
 		local d = Dialog.new(nil, nil, nil, nil, "DeltaOS", {"Do you want to", "launch the shell?"}, true,true)
 		if d:autoCaptureEvents() == "ok" then
 			draw()

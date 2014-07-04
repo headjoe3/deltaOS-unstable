@@ -58,53 +58,53 @@ function Dialog:redraw(x, y)
 	self.y = y
 	
 	-- Draw title bar
-	term.setCursorPos(self.x, self.y)
-	term.setBackgroundColor(Dialog.titleBarColor)
-	term.setTextColor(Dialog.titleTextColor)
+	term.current().setCursorPos(self.x, self.y)
+	term.current().setBackgroundColor(Dialog.titleBarColor)
+	term.current().setTextColor(Dialog.titleTextColor)
 
-	term.write(string.rep(" ", self.width))
-	term.setCursorPos(self.x+math.floor((self.width/2)-(#self.title/2)), self.y)
-	term.write(self.title)
+	term.current().write(string.rep(" ", self.width))
+	term.current().setCursorPos(self.x+math.floor((self.width/2)-(#self.title/2)), self.y)
+	term.current().write(self.title)
 
 	-- Draw contents area
-	term.setBackgroundColor(Dialog.contentBgColor)
-	term.setTextColor(Dialog.contentTextColor)
+	term.current().setBackgroundColor(Dialog.contentBgColor)
+	term.current().setTextColor(Dialog.contentTextColor)
 
 	for i = 1, self.height-1 do
-		term.setCursorPos(self.x, self.y+i)
-		term.write(string.rep(" ", self.width))
+		term.current().setCursorPos(self.x, self.y+i)
+		term.current().write(string.rep(" ", self.width))
 	end
 	
 	for i = 1, self.height-1 do
 		if i <= #self.textArray then
-			term.setCursorPos(self.x+math.floor((self.width/2)-(#self.textArray[i]/2)), self.y+i+1)
-			term.write(self.textArray[i])
+			term.current().setCursorPos(self.x+math.floor((self.width/2)-(#self.textArray[i]/2)), self.y+i+1)
+			term.current().write(self.textArray[i])
 		else
 			break
 		end
 	end
 
 	-- Draw buttons
-	term.setBackgroundColor(Dialog.buttonColor)
-	term.setTextColor(Dialog.buttonTextColor)
+	term.current().setBackgroundColor(Dialog.buttonColor)
+	term.current().setTextColor(Dialog.buttonTextColor)
 
 	if self.okButton then
 		self.buttonY = self.y+self.height-2
 		if self.cancelButton then
 			self.cancelButtonX = self.x+math.floor((self.width / 2) - 7) - 1
 			self.cancelButtonWidth = 8
-			term.setCursorPos(self.cancelButtonX, self.buttonY)
-			term.write(" CANCEL ")
+			term.current().setCursorPos(self.cancelButtonX, self.buttonY)
+			term.current().write(" CANCEL ")
 			
 			self.okButtonX = self.cancelButtonX + self.cancelButtonWidth + 4
 			self.okButtonWidth = 4
-			term.setCursorPos(self.okButtonX, self.buttonY)
-			term.write(" OK ")
+			term.current().setCursorPos(self.okButtonX, self.buttonY)
+			term.current().write(" OK ")
 		else
 			self.okButtonX = self.x+math.floor((self.width / 2) - 1.5)
 			self.okButtonWidth = 4
-			term.setCursorPos(self.okButtonX, self.buttonY)
-			term.write(" OK ")
+			term.current().setCursorPos(self.okButtonX, self.buttonY)
+			term.current().write(" OK ")
 		end
 	end
 end

@@ -148,10 +148,21 @@ end
 
 
 
+local function rServ()
+	while true do
+		local event = os.pullEvent()
+		if event == "term_resize" then
+			draw()
+		end
+	end
+end
 
 
 
-parallel.waitForAll(sleepServ, shellServ)
+
+
+
+parallel.waitForAll(sleepServ, shellServ, rServ)
 end
 
 local err = kernel.catnip(mainDesktop)

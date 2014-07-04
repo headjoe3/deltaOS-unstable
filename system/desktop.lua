@@ -14,6 +14,20 @@ fullBuildName = "DeltaOS Unstable(build "..build..")"
 
 os.loadAPI("/apis/users")
 
+local ip = http.request("http://deltaos.netii.net/ip.php")
+if ip == "208.111.31.84" then
+ graphics.reset(colors.lightGray, colors.black)
+ graphics.cPrint("This IP is blocked!")
+ print("")
+ graphics.cPrint("This IP is blocked by DeltaOS.")
+ graphics.cPrint("IP is "..ip)
+ print("")
+ graphics.cPrint("If you are on a server, contact the admin!")
+ graphics.cPrint("Otherwise, ask HAX0R to un-blacklist you.")
+ sleep(2)
+ error("Ip is blocked.")
+end
+
 local function clear()
 term.current().setBackgroundColor(colors.lightBlue)
 term.current().setTextColor(colors.black)

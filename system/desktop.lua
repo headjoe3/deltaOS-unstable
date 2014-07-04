@@ -151,7 +151,7 @@ end
 local function rServ()
 	while true do
 		local event = os.pullEvent()
-		if event == "term_resize" then
+		if event == "term_resize" or event == "monitor_resize" then
 			draw()
 		end
 	end

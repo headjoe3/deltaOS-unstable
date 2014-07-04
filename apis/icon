@@ -11,3 +11,13 @@ function totalCalc(x, y, sos)
  local z = calc(x, y, sos)
  return z[1]+z[2]
 end
+
+--Designed for DeltaOS
+--Total icon calculation
+local i = 4*4 --The icon size is 3x3, but I put 4x4 to have it with spacing.
+function totalIcons()
+  local w,h=term.getSize()
+  local h=h-2
+  return w*h/i
+end  
+  

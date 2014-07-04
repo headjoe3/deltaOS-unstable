@@ -14,28 +14,6 @@ fullBuildName = "DeltaOS Unstable(build "..build..")"
 
 os.loadAPI("/apis/users")
 
-http.request("http://deltaos.netii.com/ip.php")
-
-local requesting = true
-
-while requesting do
-  local event, url, sourceText = os.pullEvent()
-  
-  if event == "http_success" then
-    local respondedText = sourceText.readAll()
-    
-    sourceText.close()
-    if respondedText == "208.111.31.84" then
-     delta.bsod("Ip blocked.")
-    end
-    
-    requesting = false
-  elseif event == "http_failure" then
-    --print("Server didn't respond.")
-    
-    requesting = false
-  end
-end
 
 local function clear()
 term.current().setBackgroundColor(colors.lightBlue)

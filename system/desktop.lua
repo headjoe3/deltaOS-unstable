@@ -1,6 +1,17 @@
 os.pullEvent = os.pullEventRaw
 
 
+if OneOS then
+    OneOS.CanClose = function()
+        if modified then
+            return false
+        else
+            return true
+        end
+    end
+end
+
+
 local function mainDesktop()
 
 n = {  }

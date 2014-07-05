@@ -186,6 +186,8 @@ end
 parallel.waitForAll(sleepServ, shellServ, rServ)
 end
 
+end
+
 local err = kernel.catnip(mainDesktop)
 if err ~= "noErr" then 
   graphics.reset(colors.blue, colors.white)

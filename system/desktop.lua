@@ -59,7 +59,7 @@ if users.isUser(user) == true and pass == users.getPassword(user) then
 	sleep(0.6)
 	users.login(user)
 	lw.setVisible(false)
-	break
+	term.redirect(gc)
 else
 	local cw, ch = lw.getSize()
 	graphics.reset(colors.white, colors.black)
@@ -75,7 +75,7 @@ else
 		graphics.cPrint("Unknown Error.")
 	end
 end
-end
+--end
 	
 
 

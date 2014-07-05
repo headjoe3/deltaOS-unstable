@@ -23,7 +23,7 @@ end
 local gc = getC()
 
 
-local lw = window.create( term.current(), kernel.x/2-30/2, kernel.y/2-10/2, 10, 6, true )
+local lw = window.create( term.current(), kernel.x/2-30/2, kernel.y/2-10/2, 30, 10, true )
 
 term.redirect(lw)
 

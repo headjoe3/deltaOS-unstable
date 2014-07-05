@@ -48,10 +48,10 @@ graphics.cPrint("Password: ")
 paintutils.drawLine( 2, 9, ww-1, 9, colors.lightGray )
 
 term.setCursorPos(2, 4)
-local user = tostring(read())
+local user = tostring( read() )
 
 term.setCursorPos(2, 9)
-local pass = read("*")
+local pass = tostring( read("*") )
 
 
 if users.isUser(user) == true and pass == users.getPassword(user) then

@@ -41,7 +41,7 @@ paintutils.drawLine( 2, 4, ww-1, 4, colors.lightGray )
 print("")
 lw.setBackgroundColor(colors.white)
 graphics.cPrint("Password: ")
-paintutils.drawLine( 2, 7, ww-1, 4, colors.lightGray )
+paintutils.drawLine( 2, 7, ww-1, 7, colors.lightGray )
 
 term.setCursorPos(2, 4)
 local user = read()

@@ -17,7 +17,13 @@ end
 
 function wake()
  for i=1, h do
-  graphics.drawLine(i, colors.lightBlue)
+  if i == 1 then 
+   graphics.drawLine(i, colors.lightGray)
+   term.setCursorPos(1, 1)
+   write("D")
+  else
+   graphics.drawLine(i, colors.lightBlue)
+  end
   os.sleep(0.01)
  end
 end

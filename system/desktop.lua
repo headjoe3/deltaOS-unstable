@@ -20,7 +20,7 @@ local redraw = false
 
 
 isUnstable = true
-build = "20"
+build = "25"
 fullBuildName = "DeltaOS Unstable(build "..build..")"
 
 os.loadAPI("/apis/users")
@@ -115,7 +115,7 @@ local function drawBar()
 end
 
 local function draw()
-graphics.reset( colors.lightBlue )
+graphics.reset( colors.lightBlue, colors.black )
 term.current().setCursorPos(kernel.x-(kernel.x-1), 1)
 
 drawBar()

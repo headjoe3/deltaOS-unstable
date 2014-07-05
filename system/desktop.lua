@@ -34,12 +34,14 @@ graphics.cPrint("DeltaOS login")
 print("")
 graphics.cPrint("Username:")
 
-paintutils.drawLine( 2, 4, kernel.x-1, 4, colors.lightGray )
+local ww, wh = lw.getSize()
+
+paintutils.drawLine( 2, 4, ww-1, 4, colors.lightGray )
 
 print("")
 lw.setBackgroundColor(colors.white)
 graphics.cPrint("Password: ")
-paintutils.drawLine( 2, 7, kernel.x-1, 4, colors.lightGray )
+paintutils.drawLine( 2, 7, ww-1, 4, colors.lightGray )
 
 term.setCursorPos(2, 4)
 local user = read()

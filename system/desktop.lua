@@ -23,6 +23,9 @@ end
 local gc = getC()
 
 
+
+graphics.drawImage("/system/delta.nfp", 1, 1)
+
 local lw = window.create( term.current(), kernel.x/2-30/2, kernel.y/2-10/2, 30, 10, true )
 
 term.redirect(lw)
@@ -40,8 +43,9 @@ paintutils.drawLine( 2, 4, ww-1, 4, colors.lightGray )
 
 print("")
 lw.setBackgroundColor(colors.white)
+term.setCursorPos(7, 1)
 graphics.cPrint("Password: ")
-paintutils.drawLine( 2, 7, ww-1, 7, colors.lightGray )
+paintutils.drawLine( 2, 9, ww-1, 9, colors.lightGray )
 
 term.setCursorPos(2, 4)
 local user = read()

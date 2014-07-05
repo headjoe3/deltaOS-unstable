@@ -64,6 +64,7 @@ if users.isUser(user) == true and pass == users.getPassword(user) then
 	users.login(user)
 	lw.setVisible(false)
 	term.redirect( term.native() )
+	animations.wake()
 else
 	local cw, ch = lw.getSize()
 	graphics.reset(colors.white, colors.black)

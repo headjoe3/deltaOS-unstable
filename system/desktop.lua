@@ -43,7 +43,7 @@ paintutils.drawLine( 2, 4, ww-1, 4, colors.lightGray )
 
 print("")
 lw.setBackgroundColor(colors.white)
-term.setCursorPos(7, 1)
+term.setCursorPos(1, 7)
 graphics.cPrint("Password: ")
 paintutils.drawLine( 2, 9, ww-1, 9, colors.lightGray )
 

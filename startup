@@ -12,6 +12,15 @@ os.loadAPI("/apis/delta")
 os.loadAPI("/apis/kernel")
 os.loadAPI("/apis/graphics")
 
+if OneOS then
+    OneOS.CanClose = function()
+        if modified then
+            return false
+        else
+            return true
+        end
+    end
+end
 
 local function loadDeltaOS()
 

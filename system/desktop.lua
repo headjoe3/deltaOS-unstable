@@ -48,7 +48,7 @@ graphics.cPrint("Password: ")
 paintutils.drawLine( 2, 9, ww-1, 9, colors.lightGray )
 
 term.setCursorPos(2, 4)
-local user = read()
+local user = tostring(read())
 
 term.setCursorPos(2, 9)
 local pass = read("*")
@@ -72,7 +72,7 @@ else
 	graphics.cPrint("Login failed.")
 	print("")
 	lw.setCursorPos(1, ch/2)
-	if users.isUser(user) == true and users.getPassword(user) == false then
+	if users.isUser(user) and users.getPassword(user) == false then
 		graphics.cPrint("Password incorrect.")
 		sleep(0.6)
 		os.reboot()

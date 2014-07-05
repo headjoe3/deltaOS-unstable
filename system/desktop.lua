@@ -59,7 +59,7 @@ if users.isUser(user) == true and pass == users.getPassword(user) then
 	sleep(0.6)
 	users.login(user)
 	lw.setVisible(false)
-	term.redirect(gc)
+	term.redirect( term.native() )
 else
 	local cw, ch = lw.getSize()
 	graphics.reset(colors.white, colors.black)
@@ -69,10 +69,16 @@ else
 	lw.setCursorPos(1, ch/2)
 	if users.isUser(user) == true and users.getPassword(user) == false then
 		graphics.cPrint("Password incorrect.")
+		sleep(0.6)
+		os.reboot()
 	elseif users.isUser(user) == false then
 		graphics.cPrint("No such user.")
+		sleep(0.6)
+		os.reboot()
 	else
 		graphics.cPrint("Unknown Error.")
+		sleep(0.6)
+		os.reboot()
 	end
 end
 --end

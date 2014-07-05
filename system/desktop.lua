@@ -15,58 +15,70 @@ fullBuildName = "DeltaOS Unstable(build "..build..")"
 os.loadAPI("/apis/users")
 
 
-local function clear()
-term.current().setBackgroundColor(colors.lightBlue)
-term.current().setTextColor(colors.black)
-term.current().clear()
-term.current().setCursorPos(1,1)
+local function getC()
+ return term.current()
+ 
 end
-local function makeUI()
-  w,h = term.current().getSize()
-  local lucx = w/2-7
-  local lucy = (h/2)-2
-  term.current().setCursorPos(lucx,lucy)
-  term.current().write("Login to DeltaOS:")
-  term.current().setCursorPos(lucx,lucy+1)
-  term.current().write("Username:")
-  term.current().setCursorPos(lucx,lucy+3)
-  term.current().write("Password:")
-  term.current().setCursorPos(lucx,lucy+2)
-  term.current().setBackgroundColor(colors.white)
-  term.current().write("              ")
-  term.current().setCursorPos(lucx,lucy+4)
-  term.current().write("              ")
-  return lucx,lucy
-end
-local function login_main()
+
+local gc = getC()
+
+
+local lw = window.create( term.current(), kernel.x/2-15/2, kernel.y/2-8/2, 10, 6, true )
+
+term.redirect(lw)
+
 while true do
-clear()
-local lucx,lucy = makeUI()
-term.current().setCursorPos(lucx+1,lucy+2)
-local name = read()
-if not users.isUser(name) then
-clear()
-term.current().setCursorPos(lucx,lucy)
-term.current().write("Not valid username")
-sleep(3)
-os.reboot()
-end
-term.current().setCursorPos(lucx+1,lucy+4)
+graphics.reset(colors.white, colors.black)
+
+graphics.cPrint("DeltaOS login")
+print("")
+graphics.cPrint("Username:")
+
+paintutils.drawLine( 2, 4, kernel.x-1, 4, colors.lightGray )
+
+print("")
+lw.setBackgroundColor(colors.white)
+graphics.cPrint("Password: ")
+paintutils.drawLine( 2, 7, kernel.x-1, 4, colors.lightGray )
+
+term.setCursorPos(2, 4)
+local user = read()
+
+term.setCursorPos(2, 7)
 local pass = read("*")
-local realpass = users.getPassword(name)
-if realpass ~= pass then
-clear()
-term.current().setCursorPos(lucx,lucy)
-term.write("Password incorrect")
-sleep(3)
-os.reboot()
+
+
+if users.isUser(user) == true and pass == users.getPassword(user) then
+	local cw, ch = lw.getSize()
+	graphics.reset(colors.white, colors.black)
+	lw.setCursorPos(1, ch/2)
+	graphics.cPrint("Logging in user")
+	graphics.cPrint(user.."...")
+	sleep(0.6)
+	login(user)
+	lw.setVisible(false)
+	break
 else
-users.login(name)
-return
+	local cw, ch = lw.getSize()
+	graphics.reset(colors.white, colors.black)
+	lw.setCursorPos(1, 2)
+	graphics.cPrint("Login failed.")
+	print("")
+	lw.setCursorPos(1, ch/2)
+	if users.isUser(user) == true and users.getPassword(user) == false then
+		graphics.cPrint("Password incorrect.")
+	elseif users.isUser(user) == false then
+		graphics.cPrint("No such user.")
+	else
+		graphics.cPrint("Unknown Error.")
+	end
 end
 end
-end
-login_main()
+	
+
+
+
+
 dofile("/system/sApi/dialog")
 
 

@@ -12,6 +12,12 @@ os.loadAPI("/apis/delta")
 os.loadAPI("/apis/kernel")
 os.loadAPI("/apis/graphics")
 
+
+if OneOS then
+    OneOS.RequestRunAtStartup()
+end
+
+
 if OneOS then
     OneOS.CanClose = function()
         if modified then

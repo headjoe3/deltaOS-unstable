@@ -50,7 +50,7 @@ paintutils.drawLine( 2, 9, ww-1, 9, colors.lightGray )
 term.setCursorPos(2, 4)
 local user = read()
 
-term.setCursorPos(2, 7)
+term.setCursorPos(2, 9)
 local pass = read("*")
 
 

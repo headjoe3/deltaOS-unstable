@@ -57,7 +57,7 @@ if users.isUser(user) == true and pass == users.getPassword(user) then
 	graphics.cPrint("Logging in user")
 	graphics.cPrint(user.."...")
 	sleep(0.6)
-	login(user)
+	users.login(user)
 	lw.setVisible(false)
 	break
 else

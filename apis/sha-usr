@@ -1,0 +1,16 @@
+--SHA-User API - intended to be used with the SHA256 API
+os.loadAPI("apis/sha256")
+function userInfoWrite(username,password,file)
+  passhash = sha256.hash(password)
+  local info = {username,passhash}
+  local load = fs.open(file, "w")
+  load.write(textutils.serialize(info))
+  load.close()
+end
+function userInfoRead(file)
+  local load = fs.open(file, "r")
+  local hi = textutils.unserialize(load.readAll())
+  return hi[1], hi[2]
+  load.close()
+end  
+  

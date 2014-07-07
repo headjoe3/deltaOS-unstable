@@ -1,15 +1,6 @@
 os.pullEvent = os.pullEventRaw
 
 
-if OneOS then
-    OneOS.CanClose = function()
-        if modified then
-            return false
-        else
-            return true
-        end
-    end
-end
 
 
 local function mainDesktop()
@@ -20,7 +11,7 @@ local redraw = false
 
 
 isUnstable = true
-build = "25"
+build = "26"
 fullBuildName = "DeltaOS Unstable(build "..build..")"
 
 os.loadAPI("/apis/users")
@@ -37,9 +28,16 @@ local gc = getC()
 
 graphics.drawImage("/system/delta.nfp", 1, 1)
 
+
 local lw = window.create( term.current(), kernel.x/2-30/2, kernel.y/2-10/2, 30, 10, true )
 
 term.redirect(lw)
+
+
+local latestBuild = http.get("https://raw.githubusercontent.com/FlareHAX0R/deltaOS-unstable/master/version")
+if latestBuild:readAll() ~= build then
+	shell.run("/system/update")
+end
 
 while true do
 graphics.reset(colors.white, colors.black)

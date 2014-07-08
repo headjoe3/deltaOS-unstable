@@ -24,7 +24,7 @@ graphics.cPrint("Password: ")
 
 term.setCursorPos(2, kernel.y/2)
 term.setBackgroundColor(colors.gray)
-local user = read()
+local user = sha256.hahs( read() )
 
 term.setCursorPos(2, kernel.y/2+4)
 

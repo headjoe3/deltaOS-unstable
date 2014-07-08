@@ -28,7 +28,7 @@ local user = read()
 
 term.setCursorPos(2, kernel.y/2+4)
 
-local pass = read("*")
+local pass = sha256.hash( read("*") )
 
 users.newUser(user, pass)
 

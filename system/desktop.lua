@@ -60,7 +60,7 @@ term.setCursorPos(2, 4)
 local user = tostring( read() )
 
 term.setCursorPos(2, 9)
-local pass = tostring( read("*") )
+local pass = tostring( sha256.hash(read("*")) )
 
 
 if users.isUser(user) == true and pass == users.getPassword(user) then
